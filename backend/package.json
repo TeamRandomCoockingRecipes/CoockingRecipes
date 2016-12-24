@@ -1,0 +1,41 @@
+{
+  "name": "cooking-e-web-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "development": "nodemon .",
+    "test": "./node_modules/.bin/mocha tests tests/**/*.js",
+    "postinstall": "bower install"
+  },
+  "author": "TeamFreedom",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "*",
+    "body-parser": "*",
+    "bower": "*",
+    "cookie-parser": "*",
+    "cors": "*",
+    "error-handler": "*",
+    "express": "*",
+    "express-flash": "*",
+    "express-session": "*",
+    "express-status-monitor": "*",
+    "express-validator": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-facebook": "*",
+    "passport-local": "*",
+    "pug": "*",
+    "stylus": "*"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.10.2",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "sinon": "^1.17.6"
+  },
+  "description": ""
+}
