@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "development": "nodemon .",
-    "test": "./node_modules/.bin/mocha tests tests/**/*.js",
-    "postinstall": "bower install"
+    "test": "./node_modules/.bin/mocha tests tests/**/*.js"
   },
   "author": "TeamFreedom",
   "license": "MIT",
@@ -26,7 +25,6 @@
     "passport": "*",
     "passport-facebook": "*",
     "passport-local": "*",
-    "pug": "*",
     "stylus": "*"
   },
   "devDependencies": {
