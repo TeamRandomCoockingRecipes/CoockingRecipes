@@ -15,7 +15,7 @@ export class ArticleService {
     constructor(private http: Http) { } 
 
     getArticles(): Observable<IArticle[]> {
-        return this.http.get(this.articleBackendUrl)
+        return this.http.get(this.articlesUrl)
             .map((response: Response) => <IArticle[]> response.json()['result'])
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError)

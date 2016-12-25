@@ -13,15 +13,14 @@ var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
-// Components
-var app_component_1 = require("./app.component");
-var navbar_component_1 = require("./navbar/navbar.component");
-var home_component_1 = require("./home/home.component");
-// Services and Routes
-var app_routing_1 = require("./app.routing");
 // Modules
 var article_module_1 = require("./article/article.module");
 var shared_module_1 = require("./shared/shared.module");
+// Components
+var app_component_1 = require("./app.component");
+var home_component_1 = require("./home/home.component");
+// Services and Routes
+var app_routing_1 = require("./app.routing");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -40,7 +39,6 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
-            navbar_component_1.NavbarComponent,
             home_component_1.HomeComponent
         ],
         bootstrap: [app_component_1.AppComponent],

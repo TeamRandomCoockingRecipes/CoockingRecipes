@@ -21,7 +21,7 @@ var ArticleService = (function () {
         this.articlesUrl = 'api/testStore/articles.json';
     }
     ArticleService.prototype.getArticles = function () {
-        return this.http.get(this.articleBackendUrl)
+        return this.http.get(this.articlesUrl)
             .map(function (response) { return response.json()['result']; })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);

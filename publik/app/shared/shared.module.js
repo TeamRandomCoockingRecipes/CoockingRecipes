@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
+var router_1 = require("@angular/router");
+var navbar_component_1 = require("./navbar/navbar.component");
 var footer_component_1 = require("./footer/footer.component");
 var SharedModule = (function () {
     function SharedModule() {
@@ -19,12 +21,15 @@ var SharedModule = (function () {
 SharedModule = __decorate([
     core_1.NgModule({
         imports: [
-            common_1.CommonModule
+            common_1.CommonModule,
+            router_1.RouterModule
         ],
         declarations: [
+            navbar_component_1.NavbarComponent,
             footer_component_1.FooterComponent
         ],
         exports: [
+            navbar_component_1.NavbarComponent,
             footer_component_1.FooterComponent
         ]
     }),

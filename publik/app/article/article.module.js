@@ -12,6 +12,8 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var article_list_component_1 = require("./article-list/article-list.component");
 var article_detail_component_1 = require("./article-detail/article-detail.component");
+var create_article_compontent_1 = require("./create/create-article.compontent");
+var edit_article_component_1 = require("./edit/edit-article.component");
 var article_routing_1 = require("./article.routing");
 var article_service_1 = require("./services/article.service");
 var ArticleModule = (function () {
@@ -27,7 +29,9 @@ ArticleModule = __decorate([
         ],
         declarations: [
             article_list_component_1.ArticleListComponent,
-            article_detail_component_1.ArticleDetailComponent
+            article_detail_component_1.ArticleDetailComponent,
+            create_article_compontent_1.CreateArticleComponent,
+            edit_article_component_1.EditArticleComponent
         ],
         providers: [article_service_1.ArticleService],
         exports: [

@@ -4,17 +4,18 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'
 
+// Modules
+import { ArticleModule } from './article/article.module';
+import { SharedModule } from './shared/shared.module';
+
 // Components
 import { AppComponent }  from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 
 // Services and Routes
 import { AppRoutes } from './app.routing';
 
-// Modules
-import { ArticleModule } from './article/article.module';
-import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   imports: [ 
@@ -26,9 +27,8 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     AppRoutes
   ],
-  declarations: [ 
+  declarations: [
     AppComponent,
-    NavbarComponent,
     HomeComponent
   ],
   bootstrap: [ AppComponent ],
