@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 
 // Services and Routes
 import { AppRoutes } from './app.routing';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -29,7 +30,8 @@ import { AppRoutes } from './app.routing';
   ],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CategoryComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [
