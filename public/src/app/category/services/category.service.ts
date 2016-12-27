@@ -10,7 +10,7 @@ import 'rxjs/add/observable/of';
 import { ICategory } from '../category';
 
 @Injectable()
-export class ArticleService {
+export class CategoryService {
     //private categoryBackendUrl = 'http://localhost:3005/api/categories/test';
     private catergoriesUrl = 'api/testStore/categories.json';
 
@@ -25,12 +25,12 @@ export class ArticleService {
 
     addCategory(newCategory: ICategory): Observable<ICategory> {
         return this.http.post(this.catergoriesUrl, newCategory)
-            .map(this.exrectData)
+            .map(this.extractData)
             .catch(this.handleError);
     }
 
 
-    private exrectData(res: Response) {
+    private extractData(res: Response) {
         let body = res.json();
         return body.data || { };
     }
