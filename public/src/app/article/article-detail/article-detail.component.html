@@ -1,3 +1,20 @@
 <p>
   article-detail works!
 </p>
+
+<!--trabva da go napravia asinhronno-->
+<div>                
+  <img src="{{article? article.imgUrl : 'NO Article Url'}}" alt="{{ article? article.title : 'No article title'}}" width="50px">
+</div>
+<div>
+  Ttle:  {{ article? article.title : 'NO article'}}
+</div>
+<div>
+  Content:  {{ article? article.content : 'no article content'}}
+</div>
+
+<div class='panel-footer'>
+        <a class='btn btn-secondary' (click)='onBack()' style='width:80px'>
+            <i class='glyphicon glyphicon-chevron-left'></i> Back
+        </a>
+</div>

@@ -1,6 +1,15 @@
 <div *ngFor="let article of articles">
-  Title:
-  <a [routerLink]="['/article', article.id]">
-     {{ article.title }}
-  </a> 
+  <div>
+    Title:
+    <a [routerLink]="['/article', article.id]">
+      {{ article.title }}
+    </a> 
+  </div>
+  <div>
+    Image:  <img src="{{ article.imgUrl }}" alt="{{article.title}}" width="50px">
+  </div>
+  <div>
+    Content: {{article.content}}
+  </div>
+  
 </div>

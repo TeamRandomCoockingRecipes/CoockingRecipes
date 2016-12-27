@@ -27,6 +27,12 @@ export class ArticleService {
     //     let articles = '';
     // }
 
+    getArticle(id: number): Observable<IArticle> {
+        return this.getArticles()
+            .map((articles: IArticle[]) => articles.find(a => a.id === id))
+            .do(data => console.log(JSON.stringify(data)));
+    }
+
     addArticle(newArticle: IArticle): Observable<IArticle> {
         return this.http.post(this.articlesUrl, newArticle)
             .map(this.exrectData)
