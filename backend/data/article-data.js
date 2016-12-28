@@ -12,20 +12,30 @@ module.exports = function(models) {
 
     return {
         createArticle(title, imgUrl, content) {
-            let article = new Article({ title, imgUrl, content });
-            if (3 > title.length || title.length > 50 ) {
+            let article = new Article({
+                title,
+                imgUrl,
+                content
+            });
+            if (3 > title.length || title.length > 50) {
                 console.log("--------------ïnvalid title length.", title.length);
-                return Promise.reject({ reason: "Title must be between 3 and 50 characters long." });
+                return Promise.reject({
+                    reason: "Title must be between 3 and 50 characters long."
+                });
             }
-            
+
             if (3 > imgUrl.length) {
                 console.log("--------------ïnvalid imgUrl length.", imgUrl.length);
-                return Promise.reject({ reason: "Image url must be bigger than 3 charecters long." });
+                return Promise.reject({
+                    reason: "Image url must be bigger than 3 charecters long."
+                });
             }
 
             if (3 > content.length || content.length > 10000) {
                 console.log("--------------ïnvalid content length.", content.length);
-                return Promise.reject({ reason: "Content length must be between 3 and 10000 characters long." });
+                return Promise.reject({
+                    reason: "Content length must be between 3 and 10000 characters long."
+                });
             }
 
             return new Promise((resolve, reject) => {
@@ -78,7 +88,9 @@ module.exports = function(models) {
         getNewestArticles(count) {
             return new Promise((resolve, reject) => {
                 Article.find({})
-                    .sort({ createdAt: -1 })
+                    .sort({
+                        createdAt: -1
+                    })
                     .limit(count)
                     .exec((err, articles) => {
                         if (err) {
@@ -89,21 +101,50 @@ module.exports = function(models) {
                     });
             });
         },
-        editArticleById(id, newName, newImgUrl) {
+        editArticleById(id, title, imgUrl, content) {
+            console.log("in controler edit: -- ", id);
+            console.log("in controler edit: -- ", title);
+            console.log("in controler edit: -- ", imgUrl);
+            console.log("in controler edit: -- ", content);
+
             return new Promise((resolve, reject) => {
-                this.getArticleById(id)
-                    .then(article => {
-                        if (newName) {
-                            article.name = newName;
-                        }
-                        if (newImgUrl) {
-                            article.imgUrl = newImgUrl;
+                // this.getArticleById(id)
+                //     .then(article => {
+                //         if (title) {
+                //             article.title = title;
+                //         }
+
+                //         if (imgUrl) {
+                //             article.imgUrl = imgUrl;
+                //         }
+
+                //         if (content) {
+                //             article.content = content;
+                //         }
+
+                //         return resolve(article);
+                //     })
+                //     .catch(err => {
+                //         return reject(err);
+                //     });
+                
+                let updatedRecipe;
+
+                Article.findByIdAndUpdate(id, {
+                    title,
+                    imgUrl,
+                    content
+                }, {
+                    safe: true,
+                    new: true
+                },
+                    (err, recipe) => {
+                        if (err) {
+                            return reject(err);
                         }
 
-                        return resolve(article);
-                    })
-                    .catch(err => {
-                        return reject(err);
+                        updatedRecipe = recipe;
+                        return resolve(recipe);
                     });
             });
         }

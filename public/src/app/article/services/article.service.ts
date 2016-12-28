@@ -35,16 +35,25 @@ export class ArticleService {
     }
 
     createArticle(newArticle: any): Observable<IArticle> {
-        console.log("---------this is:", newArticle);
         return this.http.post(
             this.articleBackendUrl,
              newArticle,
              { headers: this.headers })
+            .map((res: Response) => <IArticle> res.json())
+            .do(data => console.log("edited : " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    editArticle(newArticle: IArticle): Observable<IArticle> {
+        console.log("in edit article service : ", newArticle);
+        return this.http.put(
+            `${this.articleBackendUrl}/edit`,
+            newArticle,
+            { headers: this.headers })
             .map(this.exrectData)
             .catch(this.handleError);
     }
 
-    // edit()
     // delete()
 
     private exrectData(res: Response) {
@@ -54,6 +63,6 @@ export class ArticleService {
 
     private handleError(error: Response) {
         console.log(error);
-        return Observable.throw(error.json().error || 'Server error')
+        return Observable.throw(error.json().error || 'Server error');
     }
 }

@@ -39,8 +39,14 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
       .subscribe(
         article => this.article = article,
         error => this.errorMessage = <any>error);
+  }
 
-        console.log("in article detetail get article --- ", this.article);
+  onEdit() {
+    console.log("edit");
+  }
+
+  onDelete() {
+    console.log("delete");
   }
 
   onBack(): void {

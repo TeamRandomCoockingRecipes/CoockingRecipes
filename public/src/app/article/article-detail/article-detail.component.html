@@ -2,6 +2,22 @@
   article-detail works!
 </p>
 
+<!--rauta triabva da e asinhronen, ne taka-->
+<div class='panel-footer'>
+        <a 
+          class='btn btn-secondary'
+          style='width:80px'
+          [routerLink]="['/article/edit', article ? article._id : 5]"
+        >
+            <i class='glyphicon glyphicon-chevron-left'></i> Edit
+        </a>
+</div>
+<div class='panel-footer'>
+        <a class='btn btn-secondary' (click)='onDelete()' style='width:80px'>
+            <i class='glyphicon glyphicon-chevron-left'></i> Delete
+        </a>
+</div>
+
 <!--trabva da go napravia asinhronno-->
 <div>                
   <img src="{{article? article.imgUrl : 'NO Article Url'}}" alt="{{ article? article.title : 'No article title'}}" width="50px">

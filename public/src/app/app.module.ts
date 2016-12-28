@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 // Modules
 import { ArticleModule } from './article/article.module';
 import { SharedModule } from './shared/shared.module';
-import  {CategoryModule} from './category/category.module'
+import  {CategoryModule} from './category/category.module';
 
 // Components
 import { AppComponent }  from './app.component';
