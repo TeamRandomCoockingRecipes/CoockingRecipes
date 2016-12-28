@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router'
 // Modules
 import { ArticleModule } from './article/article.module';
 import { SharedModule } from './shared/shared.module';
+import  {CategoryModule} from './category/category.module'
 
 // Components
 import { AppComponent }  from './app.component';
@@ -14,9 +15,6 @@ import { HomeComponent } from './home/home.component';
 
 // Services and Routes
 import { AppRoutes } from './app.routing';
-import { CategoryComponent } from './category/category.component';
-
-
 
 @NgModule({
   imports: [ 
@@ -25,13 +23,13 @@ import { CategoryComponent } from './category/category.component';
     CommonModule,
     RouterModule,
     ArticleModule,
+    CategoryModule,
     SharedModule,
     AppRoutes
   ],
   declarations: [
     AppComponent,
-    HomeComponent,
-    CategoryComponent
+    HomeComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [
