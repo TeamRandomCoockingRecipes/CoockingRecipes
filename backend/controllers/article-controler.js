@@ -9,7 +9,6 @@ module.exports = function(data) {
             // if (!req.isAuthenticated()) {
             //     return res.redirect("/");
             // }
-            console.log("--------->> in createArticle: req: ", req.body);
 
             let {
                 title,
@@ -39,17 +38,6 @@ module.exports = function(data) {
                         .send(err);
                 });
         },
-        getArticleByName(req, res) {
-            let title = req.params.title;
-            return data.getArticleByName(title)
-                .then(article => {
-                    res.send(article);
-                })
-                .catch(err => {
-                    res.status(400)
-                        .send(err);
-                });
-        },
         getArticleById(req, res) {
             let id = req.params.id;
 
@@ -73,30 +61,6 @@ module.exports = function(data) {
                     });
                 });
         },
-        getCreateArticleForm(req, res) {
-            // if (!req.isAuthenticated()) {
-            //     return res.redirect("/");
-            // }
-
-            return data.getAllArticles()
-                .then(articles => {
-                    return res.send({
-                        model: articles,
-                        user: req.user
-                    });
-                });
-        },
-        getEditArticleForm(req, res) {
-            let id = req.params.id;
-
-            return data.getArticleById(id)
-                .then(article => {
-                    res.send({
-                        model: article,
-                        user: req.user
-                    });
-                });
-        },
         editArticleById(req, res) {
             let {
                 _id,
@@ -105,12 +69,8 @@ module.exports = function(data) {
                 content
             } = req.body;
 
-            console.log("--- controler editArticle ---  ", req.body);
-
             return data.editArticleById(_id, title, imgUrl, content)
                 .then(article => {
-                    console.log("server send: ", article);
-
                     return res.json({ article
                         // user: req.user
                     });

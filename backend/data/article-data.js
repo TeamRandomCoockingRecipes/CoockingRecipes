@@ -12,11 +12,6 @@ module.exports = function(models) {
 
     return {
         createArticle(title, imgUrl, content) {
-            let article = new Article({
-                title,
-                imgUrl,
-                content
-            });
             if (3 > title.length || title.length > 50) {
                 console.log("--------------ïnvalid title length.", title.length);
                 return Promise.reject({
@@ -38,6 +33,12 @@ module.exports = function(models) {
                 });
             }
 
+            let article = new Article({
+                title,
+                imgUrl,
+                content
+            });
+
             return new Promise((resolve, reject) => {
                 article.save(err => {
                     if (err) {
@@ -50,26 +51,16 @@ module.exports = function(models) {
         },
         getAllArticles() {
             return new Promise((resolve, reject) => {
-                Article.find({}, (err, articles) => {
-                    if (err) {
-                        return reject(err);
-                    }
+                Article
+                    .find()
+                    .where("isDeleted").equals(false)
+                    .exec((err, articles) => {
+                        if (err) {
+                            return reject(err);
+                        }
 
-                    return resolve(articles);
-                });
-            });
-        },
-        getArticleByName(name) {
-            return new Promise((resolve, reject) => {
-                Article.findOne({
-                    name
-                }, (err, article) => {
-                    if (err) {
-                        return reject(err);
-                    }
-
-                    return resolve(article);
-                });
+                        return resolve(articles);
+                    });
             });
         },
         getArticleById(id) {
@@ -79,6 +70,10 @@ module.exports = function(models) {
                 }, (err, article) => {
                     if (err) {
                         return reject(err);
+                    }
+
+                    if (!article || article.isDeleted) {
+                        return resolve(null);
                     }
 
                     return resolve(article || null);
@@ -102,34 +97,7 @@ module.exports = function(models) {
             });
         },
         editArticleById(id, title, imgUrl, content) {
-            console.log("in controler edit: -- ", id);
-            console.log("in controler edit: -- ", title);
-            console.log("in controler edit: -- ", imgUrl);
-            console.log("in controler edit: -- ", content);
-
             return new Promise((resolve, reject) => {
-                // this.getArticleById(id)
-                //     .then(article => {
-                //         if (title) {
-                //             article.title = title;
-                //         }
-
-                //         if (imgUrl) {
-                //             article.imgUrl = imgUrl;
-                //         }
-
-                //         if (content) {
-                //             article.content = content;
-                //         }
-
-                //         return resolve(article);
-                //     })
-                //     .catch(err => {
-                //         return reject(err);
-                //     });
-                
-                let updatedRecipe;
-
                 Article.findByIdAndUpdate(id, {
                     title,
                     imgUrl,
@@ -143,10 +111,12 @@ module.exports = function(models) {
                             return reject(err);
                         }
 
-                        updatedRecipe = recipe;
                         return resolve(recipe);
                     });
             });
+        },
+        deleteArticle() {
+            
         }
     };
 };

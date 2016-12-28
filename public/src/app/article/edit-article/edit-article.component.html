@@ -1,0 +1,39 @@
+<div>
+  Edit Article Form
+</div>
+<!--triabva da stane asinhronno-->
+<div>
+  <form *ngIf="article" (ngSubmit)="editArticle()">
+    Title: 
+    <input
+      type="text" 
+      name="title" 
+      [(ngModel)]="article.title"
+    >
+    Image Url: 
+    <input 
+      type="text" 
+      name="imgUrl" 
+      [(ngModel)]="article.imgUrl"
+    >
+    Content: 
+    <input 
+      type="text" 
+      name="content" 
+      [(ngModel)]="article.content"
+    >
+    <button
+      type="submit"
+      class="btn-light"
+      >
+        Edit
+      </button>
+
+      <button
+      (click)="onBack()"
+      class="btn-light"
+      >
+        Back
+      </button>
+  </form>
+</div>
