@@ -14,9 +14,10 @@ module.exports = function({
 
     router
         .get("/", controller.getAllArticles)
-        .post("/", controller.createArticle)
         .get("/:id", controller.getArticleById)
-        .put("/edit", controller.editArticleById);
+        .post("/", controller.createArticle)
+        .put("/edit", controller.editArticleById)
+        .put("/delete", controller.deleteArticleById);
 
     // .get("/newest", controller.getNewestArticlesAjax)
 

@@ -7,7 +7,7 @@
         <a 
           class='btn btn-secondary'
           style='width:80px'
-          [routerLink]="['/article/edit', article ? article._id : 5]"
+          (click)="onEdit()"
         >
             <i class='glyphicon glyphicon-chevron-left'></i> Edit
         </a>

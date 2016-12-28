@@ -75,6 +75,25 @@ module.exports = function(data) {
                         // user: req.user
                     });
                 });
+        },
+        deleteArticleById(req, res) {
+            console.log("in article delete controler: req: ", req.body);
+
+            let {
+                _id,
+                title,
+                imgUrl,
+                content
+            } = req.body;
+
+            return data.deleteArticle(_id, title, imgUrl, content)
+                .then(article => {
+                    console.log("in article delete response controler:  ", article);
+                    return res.json({ 
+                        article 
+                        // user
+                    });
+                });
         }
     };
 };

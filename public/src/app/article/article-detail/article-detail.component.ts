@@ -42,11 +42,15 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   }
 
   onEdit() {
-    console.log("edit");
+    this.router.navigate(['/article/edit', this.article._id]);
   }
 
   onDelete() {
-    console.log("delete");
+    this.articleService.deleteArticle(this.article)
+      .subscribe(
+        article => console.log(article));
+
+    this.onBack();
   }
 
   onBack(): void {

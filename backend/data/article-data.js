@@ -115,8 +115,27 @@ module.exports = function(models) {
                     });
             });
         },
-        deleteArticle() {
-            
+        deleteArticle(id, title, imgUrl, content, isDeleted = true) {
+            console.log("id deleted", isDeleted);
+
+            return new Promise((resolve, reject) => {
+                Article.findByIdAndUpdate(id, {
+                    title,
+                    imgUrl,
+                    content,
+                    isDeleted
+                }, {
+                    safe: true,
+                    new: true
+                },
+                    (err, recipe) => {
+                        if (err) {
+                            return reject(err);
+                        }
+
+                        return resolve(recipe);
+                    });
+            });
         }
     };
 };

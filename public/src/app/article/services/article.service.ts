@@ -54,7 +54,15 @@ export class ArticleService {
             .catch(this.handleError);
     }
 
-    // delete()
+    deleteArticle(article: IArticle): Observable<IArticle> {
+        console.log("in article delete service :  ", article);
+        return this.http.put(
+            `${this.articleBackendUrl}/delete`,
+            article,
+            { headers: this.headers })
+            .map(this.exrectData)
+            .catch(this.handleError);
+    }
 
     private exrectData(res: Response) {
         let body = res.json();
