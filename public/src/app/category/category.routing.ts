@@ -1,9 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { CategoryComponent } from './category.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
 const routes: Routes = [
-  { path: 'categories', component: CategoryComponent }
+  { path: 'categories', component: CategoryListComponent },
+  { path: 'category/:id', component: CategoryDetailComponent }
 ];
 
 export const CategoryRoutes = RouterModule.forChild(routes);

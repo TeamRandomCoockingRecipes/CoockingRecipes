@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { CategoryComponent } from './category.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
 import { CategoryService } from './services/category.service';
 import { CategoryRoutes } from './category.routing';
@@ -13,11 +14,13 @@ import { CategoryRoutes } from './category.routing';
     CategoryRoutes
   ],
   declarations: [
-    CategoryComponent
+    CategoryListComponent,
+    CategoryDetailComponent
   ],
   providers: [CategoryService],
   exports: [
-    CategoryComponent
+    CategoryListComponent,
+    CategoryDetailComponent
   ]
 })
 export class CategoryModule { }
