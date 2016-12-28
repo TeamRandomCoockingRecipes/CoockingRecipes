@@ -23,6 +23,12 @@ export class CategoryService {
             .catch(this.handleError)
     }
 
+    getCategory(id: string): Observable<ICategory> {
+        return this.getCategories()
+            .map((categories: ICategory[]) => categories.find(a => a._id === id))
+            .do(data => console.log(JSON.stringify(data)));
+    }
+
     addCategory(newCategory: ICategory): Observable<ICategory> {
         return this.http.post(this.catergoriesUrl, newCategory)
             .map(this.extractData)

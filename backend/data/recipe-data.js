@@ -178,7 +178,14 @@ module.exports = function(models) {
                     author: author
                 };
 
-                Recipe.findByIdAndUpdate(id, { $push: { comments: newComment } }, { safe: true, upsert: true }, (err, recipe) => {
+                Recipe.findByIdAndUpdate(id, {
+                    $push: {
+                        comments: newComment
+                    }
+                }, {
+                    safe: true,
+                    upsert: true
+                }, (err, recipe) => {
                     if (err) {
                         reject(err);
                     }
@@ -297,14 +304,19 @@ module.exports = function(models) {
                     });
             });
         },
-        getRecipes({ page, pageSize }) {
+        getRecipes({
+            page,
+            pageSize
+        }) {
             let skip = (page - 1) * pageSize,
                 limit = page * pageSize;
 
             return Promise.all([
                 new Promise((resolve, reject) => {
                     Recipe.find()
-                        .sort({ title: 1 })
+                        .sort({
+                            title: 1
+                        })
                         .skip(skip)
                         .limit(limit)
                         .exec((err, recipes) => {
@@ -326,7 +338,10 @@ module.exports = function(models) {
                 })
             ]).then(results => {
                 let [recipes, count] = results;
-                return { recipes, count };
+                return {
+                    recipes,
+                    count
+                };
             });
         },
         searchRecipes({

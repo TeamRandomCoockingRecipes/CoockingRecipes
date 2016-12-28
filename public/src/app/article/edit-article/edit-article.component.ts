@@ -1,3 +1,6 @@
+// ne e dobre da e taka, triabva niakak da exportna syotvetnii artikyl v edit componenta
+// a ne da pravia otnovo zaiavka
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -7,12 +10,11 @@ import { ArticleService } from '../services/article.service';
 import { IArticle } from '../article';
 
 @Component({
-  selector: 'article-detail',
-  templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.css']
+  selector: 'edit-article',
+  templateUrl: './edit-article.component.html',
+  styleUrls: ['./edit-article.component.css']
 })
-export class ArticleDetailComponent implements OnInit, OnDestroy {
-  pageTitle: string = 'Article detail';
+export class EditArticleComponent implements OnInit, OnDestroy {
   article: IArticle;
 
   errorMessage: string;
@@ -41,16 +43,15 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
         error => this.errorMessage = <any>error);
   }
 
-  onEdit() {
-    console.log("edit");
+  editArticle() {
+    this.articleService.editArticle(this.article)
+      .subscribe(
+        article => console.log("server rerurn article: ", article),
+        error => this.errorMessage = <any>error);
   }
 
-  onDelete() {
-    console.log("delete");
+  // zarejda article detail vednyj dobre i posle vtori pyt s query parametri: zashto?
+  onBack() {
+    this.router.navigate(['/article', this.article._id]);
   }
-
-  onBack(): void {
-    this.router.navigate(['/articles']);
-  }
-
 }

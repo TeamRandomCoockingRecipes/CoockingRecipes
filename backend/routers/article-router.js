@@ -15,12 +15,10 @@ module.exports = function({
     router
         .get("/", controller.getAllArticles)
         .post("/", controller.createArticle)
-        .get("/:id", controller.getArticleById);
+        .get("/:id", controller.getArticleById)
+        .put("/edit", controller.editArticleById);
 
-    // .get("/create", controller.getCreateArticleForm)
     // .get("/newest", controller.getNewestArticlesAjax)
-    // .put("/edit", controller.getEditArticleForm)
-    // .put("/edit/:id", controller.editArticleById)
 
     app.use("/api/articles", router);
 

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ICategory } from '../category/category';
+import { ICategory } from '../../category/category';
 
-import { CategoryService } from '../category/services/category.service';
+import { CategoryService } from '../../category/services/category.service';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryListComponent implements OnInit {
 
   private categories: ICategory[];
   private errorMessage: string;

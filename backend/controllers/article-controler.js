@@ -9,7 +9,6 @@ module.exports = function(data) {
             // if (!req.isAuthenticated()) {
             //     return res.redirect("/");
             // }
-            console.log("--------->> in createArticle: req: ", req.body);
 
             let {
                 title,
@@ -27,38 +26,12 @@ module.exports = function(data) {
                 });
         },
         getAllArticles(req, res) {
-            console.log("----- in controler");
             data.getAllArticles()
                 .then(articles => {
                     return res.send({
                         result: articles,
                         user: req.user
                     });
-                })
-                .catch(err => {
-                    res.status(400)
-                        .send(err);
-                });
-
-            // let articles = [{
-            //     "title": "Leaf Rake",
-            //     "content": "Leaf rake with 48-inch wooden handle.",
-            //     "imgUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-            // }, {
-            //     "title": "Garden Cart",
-            //     "content": "15 gallon capacity rolling garden cart",
-            //     "imgUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-            // }];
-
-            // return res.send({
-            //     result: articles
-            // });
-        },
-        getArticleByName(req, res) {
-            let title = req.params.title;
-            return data.getArticleByName(title)
-                .then(article => {
-                    res.send(article);
                 })
                 .catch(err => {
                     res.status(400)
@@ -88,42 +61,18 @@ module.exports = function(data) {
                     });
                 });
         },
-        getCreateArticleForm(req, res) {
-            // if (!req.isAuthenticated()) {
-            //     return res.redirect("/");
-            // }
-
-            return data.getAllArticles()
-                .then(articles => {
-                    return res.send({
-                        model: articles,
-                        user: req.user
-                    });
-                });
-        },
-        getEditArticleForm(req, res) {
-            let id = req.params.id;
-
-            return data.getArticleById(id)
-                .then(article => {
-                    res.send({
-                        model: article,
-                        user: req.user
-                    });
-                });
-        },
         editArticleById(req, res) {
             let {
-                id,
-                newName,
-                newImgUrl
+                _id,
+                title,
+                imgUrl,
+                content
             } = req.body;
 
-            return data.editArticleById(id, newName, newImgUrl)
-                .then(articles => {
-                    return res.send({
-                        model: articles,
-                        user: req.user
+            return data.editArticleById(_id, title, imgUrl, content)
+                .then(article => {
+                    return res.json({ article
+                        // user: req.user
                     });
                 });
         }

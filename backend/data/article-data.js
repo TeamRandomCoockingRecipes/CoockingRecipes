@@ -12,21 +12,32 @@ module.exports = function(models) {
 
     return {
         createArticle(title, imgUrl, content) {
-            let article = new Article({ title, imgUrl, content });
-            if (3 > title.length || title.length > 50 ) {
+            if (3 > title.length || title.length > 50) {
                 console.log("--------------ïnvalid title length.", title.length);
-                return Promise.reject({ reason: "Title must be between 3 and 50 characters long." });
+                return Promise.reject({
+                    reason: "Title must be between 3 and 50 characters long."
+                });
             }
-            
+
             if (3 > imgUrl.length) {
                 console.log("--------------ïnvalid imgUrl length.", imgUrl.length);
-                return Promise.reject({ reason: "Image url must be bigger than 3 charecters long." });
+                return Promise.reject({
+                    reason: "Image url must be bigger than 3 charecters long."
+                });
             }
 
             if (3 > content.length || content.length > 10000) {
                 console.log("--------------ïnvalid content length.", content.length);
-                return Promise.reject({ reason: "Content length must be between 3 and 10000 characters long." });
+                return Promise.reject({
+                    reason: "Content length must be between 3 and 10000 characters long."
+                });
             }
+
+            let article = new Article({
+                title,
+                imgUrl,
+                content
+            });
 
             return new Promise((resolve, reject) => {
                 article.save(err => {
@@ -40,26 +51,16 @@ module.exports = function(models) {
         },
         getAllArticles() {
             return new Promise((resolve, reject) => {
-                Article.find({}, (err, articles) => {
-                    if (err) {
-                        return reject(err);
-                    }
+                Article
+                    .find()
+                    .where("isDeleted").equals(false)
+                    .exec((err, articles) => {
+                        if (err) {
+                            return reject(err);
+                        }
 
-                    return resolve(articles);
-                });
-            });
-        },
-        getArticleByName(name) {
-            return new Promise((resolve, reject) => {
-                Article.findOne({
-                    name
-                }, (err, article) => {
-                    if (err) {
-                        return reject(err);
-                    }
-
-                    return resolve(article);
-                });
+                        return resolve(articles);
+                    });
             });
         },
         getArticleById(id) {
@@ -71,6 +72,10 @@ module.exports = function(models) {
                         return reject(err);
                     }
 
+                    if (!article || article.isDeleted) {
+                        return resolve(null);
+                    }
+
                     return resolve(article || null);
                 });
             });
@@ -78,7 +83,9 @@ module.exports = function(models) {
         getNewestArticles(count) {
             return new Promise((resolve, reject) => {
                 Article.find({})
-                    .sort({ createdAt: -1 })
+                    .sort({
+                        createdAt: -1
+                    })
                     .limit(count)
                     .exec((err, articles) => {
                         if (err) {
@@ -89,23 +96,27 @@ module.exports = function(models) {
                     });
             });
         },
-        editArticleById(id, newName, newImgUrl) {
+        editArticleById(id, title, imgUrl, content) {
             return new Promise((resolve, reject) => {
-                this.getArticleById(id)
-                    .then(article => {
-                        if (newName) {
-                            article.name = newName;
-                        }
-                        if (newImgUrl) {
-                            article.imgUrl = newImgUrl;
+                Article.findByIdAndUpdate(id, {
+                    title,
+                    imgUrl,
+                    content
+                }, {
+                    safe: true,
+                    new: true
+                },
+                    (err, recipe) => {
+                        if (err) {
+                            return reject(err);
                         }
 
-                        return resolve(article);
-                    })
-                    .catch(err => {
-                        return reject(err);
+                        return resolve(recipe);
                     });
             });
+        },
+        deleteArticle() {
+            
         }
     };
 };
