@@ -11,13 +11,13 @@ import { ICategory } from '../category';
 
 @Injectable()
 export class CategoryService {
-    //private categoryBackendUrl = 'http://localhost:3005/api/categories/test';
+    private categoryBackendUrl = 'http://localhost:3005/categories/api';
     private catergoriesUrl = 'api/testStore/categories.json';
 
     constructor(private http: Http) { }
 
     getCategories(): Observable<ICategory[]> {
-        return this.http.get(this.catergoriesUrl)
+        return this.http.get(this.categoryBackendUrl)
             .map((response: Response) => <ICategory[]> response.json()['result'])
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError)
@@ -25,12 +25,12 @@ export class CategoryService {
 
     getCategory(id: string): Observable<ICategory> {
         return this.getCategories()
-            .map((categories: ICategory[]) => categories.find(a => a._id === id))
+            .map((categories: ICategory[]) => categories.find(c => c._id === id))
             .do(data => console.log(JSON.stringify(data)));
     }
 
     addCategory(newCategory: ICategory): Observable<ICategory> {
-        return this.http.post(this.catergoriesUrl, newCategory)
+        return this.http.post(this.categoryBackendUrl, newCategory)
             .map(this.extractData)
             .catch(this.handleError);
     }

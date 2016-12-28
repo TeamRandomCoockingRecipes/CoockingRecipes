@@ -26,6 +26,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(
       params => {
         let id = params['id'];
+        console.log("in detail category", id);
         this.getCategory(id);
       });
   }

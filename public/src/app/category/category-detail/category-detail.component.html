@@ -2,6 +2,17 @@
     category-detail works!
 </p>
 
+<div>                
+  <img src="{{ category?.imgUrl }}" alt="{{ category?.name }}" width="50px">
+</div>
+<div>
+  Ttle:  {{ category?.name }}
+</div>
+
+<div *ngFor="let recipe of category?.recipes">
+   Recipe title: {{recipe?.title}}
+</div>
+
 <div class='panel-footer'>
     <a class='btn btn-secondary' (click)='onBack()' style='width:80px'>
         <i class='glyphicon glyphicon-chevron-left'></i> Back

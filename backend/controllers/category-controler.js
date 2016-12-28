@@ -27,8 +27,8 @@ module.exports = function(data) {
             data.getAllCategories()
                 .then(categories => {
                     return res.send({
-                        model: categories,
-                        user: req.user
+                        result: categories
+                        // user: req.user
                     });
                 })
                 .catch(err => {

@@ -1,7 +1,7 @@
 <div *ngFor="let category of categories">
     <div>
         Title:
-        <a [routerLink]="['/category', category.id]">
+        <a [routerLink]="['/category', category._id]">
       {{ category.name }}
     </a>
     </div>
