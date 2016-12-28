@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'
+import { FormsModule } from '@angular/forms';
 
 // Modules
 import { ArticleModule } from './article/article.module';
@@ -23,6 +24,7 @@ import { AppRoutes } from './app.routing';
     HttpModule,
     CommonModule,
     RouterModule,
+    FormsModule,
     ArticleModule,
     SharedModule,
     AppRoutes

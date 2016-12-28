@@ -44,21 +44,21 @@ module.exports = function({
     app.use(flash());
 
     // test
-    app.get("/api/articles/test", (req, res) => {
-        let articles = [{
-            "title": "Leaf Rake",
-            "content": "Leaf rake with 48-inch wooden handle.",
-            "imgUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-        }, {
-            "title": "Garden Cart",
-            "content": "15 gallon capacity rolling garden cart",
-            "imgUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-        }];
+    // app.get("/api/articles/test", (req, res) => {
+    //     let articles = [{
+    //         "title": "Leaf Rake",
+    //         "content": "Leaf rake with 48-inch wooden handle.",
+    //         "imgUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+    //     }, {
+    //         "title": "Garden Cart",
+    //         "content": "15 gallon capacity rolling garden cart",
+    //         "imgUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+    //     }];
 
-        return res.send({
-            result: articles
-        });
-    });
+    //     return res.send({
+    //         result: articles
+    //     });
+    // });
 
     require("./passport")({
         app,

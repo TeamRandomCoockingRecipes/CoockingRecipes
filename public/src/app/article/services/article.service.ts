@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http'
+import { Http, Headers, Response } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
@@ -11,30 +11,35 @@ import { IArticle } from '../article';
 
 @Injectable()
 export class ArticleService {
-    private articleBackendUrl = 'http://localhost:3005/api/articles/test';
+    private headers: Headers = new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    });
+
+    private articleBackendUrl = 'http://localhost:3005/api/articles';
     private articlesUrl = 'api/testStore/articles.json';
 
     constructor(private http: Http) { }
 
     getArticles(): Observable<IArticle[]> {
-        return this.http.get(this.articlesUrl)
+        return this.http.get(this.articleBackendUrl)
             .map((response: Response) => <IArticle[]> response.json()['result'])
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError)
     }
 
-    // getArticleById(): Observable<IArticle> {
-    //     let articles = '';
-    // }
-
-    getArticle(id: number): Observable<IArticle> {
+    getArticle(id: string): Observable<IArticle> {
         return this.getArticles()
-            .map((articles: IArticle[]) => articles.find(a => a.id === id))
+            .map((articles: IArticle[]) => articles.find(a => a._id === id))
             .do(data => console.log(JSON.stringify(data)));
     }
 
-    addArticle(newArticle: IArticle): Observable<IArticle> {
-        return this.http.post(this.articlesUrl, newArticle)
+    createArticle(newArticle: any): Observable<IArticle> {
+        console.log("---------this is:", newArticle);
+        return this.http.post(
+            this.articleBackendUrl,
+             newArticle,
+             { headers: this.headers })
             .map(this.exrectData)
             .catch(this.handleError);
     }

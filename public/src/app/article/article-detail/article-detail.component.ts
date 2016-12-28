@@ -25,7 +25,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(
       params => {
-        let id = +params['id'];
+        let id = params['id'];
         this.getArticle(id);
       });
   }
@@ -34,11 +34,13 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  getArticle(id: number) {
+  getArticle(id: string) {
     this.articleService.getArticle(id)
       .subscribe(
         article => this.article = article,
-        error => this.errorMessage = <any>error)
+        error => this.errorMessage = <any>error);
+
+        console.log("in article detetail get article --- ", this.article);
   }
 
   onBack(): void {

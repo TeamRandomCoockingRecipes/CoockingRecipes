@@ -1,4 +1,5 @@
 /* globals module require */
+"use strict";
 
 const express = require("express");
 let Router = express.Router;
@@ -12,15 +13,16 @@ module.exports = function({
     let router = new Router();
 
     router
-        .get("/list", controller.getAllArticles);
-        // .get("/create", controller.getCreateArticleForm)
-        // .get("/newest", controller.getNewestArticlesAjax)
-        // .post("/", controller.createArticle)
-        // .put("/edit", controller.getEditArticleForm)
-        // .put("/edit/:id", controller.editArticleById)
-        // .get("/:id", controller.getArticleById);
+        .get("/", controller.getAllArticles)
+        .post("/", controller.createArticle)
+        .get("/:id", controller.getArticleById);
 
-    app.use("api/articles", router);
+    // .get("/create", controller.getCreateArticleForm)
+    // .get("/newest", controller.getNewestArticlesAjax)
+    // .put("/edit", controller.getEditArticleForm)
+    // .put("/edit/:id", controller.editArticleById)
+
+    app.use("/api/articles", router);
 
     return router;
 };
