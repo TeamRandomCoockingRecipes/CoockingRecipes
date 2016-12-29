@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IArticle } from '../article';
-
+import { ArticleFilterPipe } from '../pipes/filter/article-filter.pipe';
 import { ArticleService } from '../services/article.service';
 
 @Component({
@@ -10,7 +10,9 @@ import { ArticleService } from '../services/article.service';
   styleUrls: ['./article-list.component.css']
 })
 export class ArticleListComponent implements OnInit {
-  private articles: IArticle[];
+  articles: IArticle[];
+  listFilter: string;
+
   private errorMessage: string;
 
   constructor(private articleService: ArticleService) { }

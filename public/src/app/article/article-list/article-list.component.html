@@ -4,7 +4,17 @@
         </a>
 </div>
 
-<div *ngFor="let article of articles">
+<div class="row">
+    <div class="col-md-2">Filter by:</div>
+    <div class="col-md-4">
+        <input 
+          type="text"
+          [(ngModel)]="listFilter"
+          placeholder="Filter" />
+    </div>
+</div>
+
+<div *ngFor="let article of articles | articleFilter: listFilter">
   <div>
     Title:
     <a [routerLink]="['/article', article._id]">

@@ -8,6 +8,7 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 
+import { ArticleFilterPipe } from './pipes/filter/article-filter.pipe';
 import { ArticleRoutes } from './article.routing';
 // import { AppService } from './services/app/app.service';
 import { ArticleService } from './services/article.service';
@@ -22,7 +23,8 @@ import { ArticleService } from './services/article.service';
     ArticleListComponent,
     ArticleDetailComponent,
     CreateArticleComponent,
-    EditArticleComponent
+    EditArticleComponent,
+    ArticleFilterPipe
   ],
   providers: [
     // AppService,
