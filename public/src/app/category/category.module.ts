@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { CategoryCreateComponent } from './category-create/category-create.component';
 
 import { CategoryService } from './services/category.service';
 import { CategoryRoutes } from './category.routing';
@@ -15,12 +16,14 @@ import { CategoryRoutes } from './category.routing';
   ],
   declarations: [
     CategoryListComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    CategoryCreateComponent
   ],
   providers: [CategoryService],
   exports: [
     CategoryListComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    CategoryCreateComponent
   ]
 })
 export class CategoryModule { }
