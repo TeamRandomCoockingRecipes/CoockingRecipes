@@ -6,8 +6,9 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
 
 const routes: Routes = [
   { path: 'categories', component: CategoryListComponent },
-  { path: 'category/:id', component: CategoryDetailComponent },
-  { path: 'category/create', component: CategoryCreateComponent }, 
+  { path: 'category/create', component: CategoryCreateComponent },
+  { path: 'category/:id', component: CategoryDetailComponent }
+  , 
 ];
 
 export const CategoryRoutes = RouterModule.forChild(routes);
