@@ -1,5 +1,5 @@
 <div class='panel-footer'>
-        <a class='btn btn-secondary' [routerLink]="['/article', 'create']" style='width:120px'>
+        <a class='btn btn-secondary' *ngIf="isUserLogged" [routerLink]="['/article', 'create']" style='width:120px'>
             <i class='glyphicon glyphicon-chevron-left'></i> Create Article
         </a>
 </div>
@@ -14,7 +14,9 @@
     </div>
 </div>
 
-<div *ngFor="let article of articles | articleFilter: listFilter">
+<!-- items being paged -->
+<div *ngFor="let article of pagedArticles | articleFilter: listFilter">
+  {{article.title}}
   <div>
     Title:
     <a [routerLink]="['/article', article._id]">
@@ -22,10 +24,40 @@
     </a> 
   </div>
   <div>
-    Image:  <img src="{{ article.imgUrl }}" alt="{{article.title}}" width="50px">
+    Image:  <img [src]="article.imgUrl" [alt]="article.title" width="50px">
   </div>
   <div>
     Content: {{article.content}}
   </div>
-  
 </div>
+
+<!-- pager    triabva da go iznesa v otdelen komponent-->
+<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" (click)="setPage(1)">First</a>
+    </li>
+    <!--<li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>-->
+    <li class="page-item"  [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" tabindex="-1" aria-label="Previous" (click)="setPage(pager.currentPage - 1)">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+    </li>
+    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+    </li>
+    <!--<li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>-->
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a class="page-link" aria-label="Next" (click)="setPage(pager.currentPage + 1)">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+        </a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+</ul>

@@ -45,7 +45,6 @@ export class ArticleService {
     }
 
     editArticle(newArticle: IArticle): Observable<IArticle> {
-        console.log("in edit article service : ", newArticle);
         return this.http.put(
             `${this.articleBackendUrl}/edit`,
             newArticle,
@@ -55,7 +54,6 @@ export class ArticleService {
     }
 
     deleteArticle(article: IArticle): Observable<IArticle> {
-        console.log("in article delete service :  ", article);
         return this.http.put(
             `${this.articleBackendUrl}/delete`,
             article,
