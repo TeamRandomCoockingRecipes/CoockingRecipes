@@ -64,6 +64,44 @@ function parseEmail(email) {
 module.exports = function(data) {
 
     const controller = {
+        createRecipe(req, res) {
+            // let author = {
+            //     id: req.user._id,
+            //     name: req.user.profile.name || parseEmail(req.user.email),
+            //     imageUrl: req.user.profile.picture || "no picture"
+            // };
+
+
+            let author = {
+                id: 'anonumous',
+                name: 'anonymous',
+                imageUrl: "no picture"
+            };
+
+
+
+            let {
+                title,
+                categories,
+                ingredients,
+                preparation,
+                imageUrls,
+                cookingTimeInMinutes
+            } = parseRecipeData(req.body);
+            return data.createRecipe(
+                    title,
+                    categories,
+                    imageUrls,
+                    ingredients,
+                    preparation,
+                    cookingTimeInMinutes,
+                    author)
+                .then(console.log)
+                .catch(err => {
+                    res.status(400)
+                        .send(err);
+                });
+        },
         getRecipeDetails(req, res) {
             let id = req.params.id;
             data.getRecipeById(id)

@@ -35,6 +35,16 @@ export class RecipeService {
             .catch(this.handleError);
     }
 
+    createRecipe(newRecipe: any): Observable<IRecipe> {
+        return this.http.post(
+            this.recipesBackendUrl,
+             newRecipe,
+             { headers: this.headers })
+            .map((res: Response) => <IRecipe> res.json())
+            .do(data => console.log("created : " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
     private handleError(error: Response) {
         console.log(error);
         return Observable.throw(error.json().error || 'Server error');

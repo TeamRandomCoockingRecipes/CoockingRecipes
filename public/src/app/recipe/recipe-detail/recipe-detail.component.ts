@@ -45,5 +45,4 @@ export class RecipeDetailComponent implements OnInit {
   onBack(): void {
     this.router.navigate(['/recipes']);
   }
-
 }

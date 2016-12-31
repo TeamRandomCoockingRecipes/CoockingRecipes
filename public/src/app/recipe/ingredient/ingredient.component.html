@@ -1,0 +1,21 @@
+<div [formGroup]="ingredientsForm">
+    <input type="text" formControlName="name">
+    <br>
+    <small [hidden]="ingredientsForm.controls.name.valid" class="text-danger">
+        Името е задължително
+    </small>
+    <br>
+    <input type="text" formControlName="quantity">
+    <br>
+    <small [hidden]="ingredientsForm.controls.quantity.valid" class="text-danger">
+        Количеството е задължително
+    </small>
+    <br>
+    <select type="text" formControlName="unit">
+        <option *ngFor="let unitOption of unitOptions" value="{{unitOption}}">{{unitOption}}</option>
+    </select>
+    <br>
+    <small [hidden]="ingredientsForm.controls.unit.valid" class="text-danger">
+        Мерната единица е зъдължителна
+    </small>
+</div>
