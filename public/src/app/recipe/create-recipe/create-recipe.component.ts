@@ -36,6 +36,12 @@ export class CreateRecipeComponent implements OnInit {
       this.newRecipe.ingredientsUnits.push(ingredient.unit);
     }
 
+    let images = [];
+    for (let url of this.newRecipe.imageUrls) {
+      images.push(url.imageUrl);
+    }
+    this.newRecipe.imageUrls = images;
+
     console.log(this.newRecipe);
 
     this.recipeService.createRecipe(this.newRecipe)
