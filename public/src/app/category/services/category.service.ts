@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http'
+import { Http, Response, Headers } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
@@ -11,8 +11,13 @@ import { ICategory } from '../category';
 
 @Injectable()
 export class CategoryService {
+    private headers: Headers = new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    });
+
+    private articlesUrl = 'api/testStore/articles.json';
     private categoryBackendUrl = 'http://localhost:3005/categories/api';
-    private catergoriesUrl = 'api/testStore/categories.json';
 
     constructor(private http: Http) { }
 
@@ -29,9 +34,13 @@ export class CategoryService {
             .do(data => console.log(JSON.stringify(data)));
     }
 
-    addCategory(newCategory: ICategory): Observable<ICategory> {
-        return this.http.post(this.categoryBackendUrl, newCategory)
-            .map(this.extractData)
+    createCategory(newCategory: any): Observable<ICategory> {
+        return this.http.post(
+            this.categoryBackendUrl,
+             newCategory,
+             { headers: this.headers })
+            .map((res: Response) => <ICategory> res.json())
+            .do(data => console.log("edited : " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

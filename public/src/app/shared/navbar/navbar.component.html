@@ -7,6 +7,8 @@
                 <li class="nav-item"><a class="nav-link" [routerLink]="['/articles']">Articles</a></li>
                 <li class="nav-item"><a class="nav-link" [routerLink]="['/categories']">Categories</a></li>
                 <li class="nav-item"><a class="nav-link" [routerLink]="['/recipes']">Recipes</a></li>
+                <li class="nav-item" *ngIf="!isUserLogged"><a class="nav-link" [routerLink]="['/login']">Login</a></li>
+                <li class="nav-item" *ngIf="isUserLogged"><a href="#" class="nav-link" (click)="onLogout">Logout</a></li>
             </ul>
         </div>
     </nav>

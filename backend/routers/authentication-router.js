@@ -14,8 +14,8 @@ module.exports = function({ app, data }) {
     let router = new Router();
 
     router
-        .get("/register", authController.getSignup)
-        .get("/login", authController.getLogin)
+        // .get("/register", authController.getSignup)
+        // .get("/login", authController.getLogin)
         .post("/register", authController.postSignup)
         .post("/login", authController.postLogin)
         .get("/logout", authController.logout)
@@ -25,12 +25,12 @@ module.exports = function({ app, data }) {
         .post("/account/delete", userController.postDeleteAccount);
 
 
-    app.use("/", router);
+    app.use("/api/autenticate", router);
 
-    app.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email", "user_location"] }));
-    app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/login" }), (req, res) => {
-        res.redirect(req.session.returnTo || "/");
-    });
+    // app.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email", "user_location"] }));
+    // app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/login" }), (req, res) => {
+    //     res.redirect(req.session.returnTo || "/");
+    // });
 
     return router;
 };

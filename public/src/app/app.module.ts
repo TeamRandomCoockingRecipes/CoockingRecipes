@@ -10,6 +10,7 @@ import { ArticleModule } from './article/article.module';
 import { SharedModule } from './shared/shared.module';
 import { CategoryModule } from './category/category.module'
 import { RecipeModule } from './recipe/recipe.module'
+import { AutenticationModule } from './autentication/autentication.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { AppRoutes } from './app.routing';
     CategoryModule,
     RecipeModule,
     SharedModule,
+    AutenticationModule,
     AppRoutes
   ],
   declarations: [
@@ -37,7 +39,7 @@ import { AppRoutes } from './app.routing';
   ],
   bootstrap: [AppComponent],
   providers: [
-
+    
   ]
 })
 export class AppModule { }

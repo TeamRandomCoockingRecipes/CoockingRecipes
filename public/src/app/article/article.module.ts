@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
+import {SharedModule} from '../shared/shared.module';
 
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
@@ -17,7 +19,8 @@ import { ArticleService } from './services/article.service';
   imports: [
     CommonModule,
     FormsModule,
-    ArticleRoutes
+    ArticleRoutes,
+    // SharedModule
   ],
   declarations: [
     ArticleListComponent,
