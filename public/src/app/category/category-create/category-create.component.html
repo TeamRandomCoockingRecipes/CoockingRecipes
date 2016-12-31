@@ -1,0 +1,26 @@
+<p>
+    create-category works!
+</p>
+<div>
+    <div>
+        Create Category Form
+    </div>
+    <form class="row" (ngSubmit)="createCaterory()">
+        <input type="text" [(ngModel)]="newCategory.name" name="name" placeholder="Name">
+        <input type="text" [(ngModel)]="newCategory.imgUrl" name="imgUrl" placeholder="Image Url">
+        <input type="text" [(ngModel)]="newCategory.description" name="description" placeholder="Description">
+        <button type="submit" class="btn-light">
+      Create
+      </button>
+    </form>
+</div>
+
+<div>
+    <ol>
+        <li *ngFor="let category of categories">
+            <a [routerLink]="['/category', category.id]">
+        {{ category.name }}
+      </a>
+        </li>
+    </ol>
+</div>

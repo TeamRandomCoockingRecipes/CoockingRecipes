@@ -1,46 +1,27 @@
 <p>
-  create-article works!
+    create-article works!
 </p>
 
 <div>
-  <div>
-    Create Article Form
-  </div>
-  <form class="row" (ngSubmit)="createArticle()">
-    <input 
-      type="text" 
-      [(ngModel)]="newArticle.title"
-      name="title" 
-      placeholder="Title"
-    >
-    <input
-      type="text"
-      [(ngModel)]="newArticle.imgUrl"
-      name="imgUrl"
-      placeholder="Image Url"
-    >
-    <input 
-      type="text"
-      [(ngModel)]="newArticle.content"
-      name="content"
-      placeholder="Content"
-
-    >
-    <button
-      type="submit"
-      class="btn-light"
-      >
+    <div>
+        Create Article Form
+    </div>
+    <form class="row" (ngSubmit)="createArticle()">
+        <input type="text" [(ngModel)]="newArticle.title" name="title" placeholder="Title">
+        <input type="text" [(ngModel)]="newArticle.imgUrl" name="imgUrl" placeholder="Image Url">
+        <input type="text" [(ngModel)]="newArticle.content" name="content" placeholder="Content">
+        <button type="submit" class="btn-light">
       Create
       </button>
-  </form>
+    </form>
 </div>
 
 <div>
-  <ol>
-    <li *ngFor="let article of articles">
-      <a [routerLink]="['/article', article.id]">
+    <ol>
+        <li *ngFor="let article of articles">
+            <a [routerLink]="['/article', article.id]">
         {{ article.title }}
-      </a> 
-    </li>
-  </ol>
+      </a>
+        </li>
+    </ol>
 </div>
