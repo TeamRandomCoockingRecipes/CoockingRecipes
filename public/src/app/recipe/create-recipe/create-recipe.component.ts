@@ -27,11 +27,13 @@ export class CreateRecipeComponent implements OnInit {
   createRecipe() {
     this.assignFormValue('imageUrls');
     this.assignFormValue('ingredients');
-
+    this.newRecipe.ingredientsName = [];
+    this.newRecipe.ingredientsQuantity = [];
+    this.newRecipe.ingredientsUnits = [];
     for (let ingredient of this.newRecipe.ingredients) {
-      this.newRecipe.ingredientsName = ingredient.name;
-      this.newRecipe.ingredientsQuantity = ingredient.quantity;
-      this.newRecipe.ingredientsUnits = ingredient.unit;
+      this.newRecipe.ingredientsName.push(ingredient.name);
+      this.newRecipe.ingredientsQuantity.push(ingredient.quantity);
+      this.newRecipe.ingredientsUnits.push(ingredient.unit);
     }
 
     console.log(this.newRecipe);
