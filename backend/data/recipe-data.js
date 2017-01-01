@@ -151,6 +151,7 @@ module.exports = function(models) {
             });
 
             console.log("deleted from categs");
+
             return resolve(recipe);
         });
     }
@@ -263,6 +264,8 @@ module.exports = function(models) {
                     })
                     .then(removeRecipeFromItsCategories)
                     .then(() => {
+                        console.log('IN EDIT DATA');
+
                         return findCategoriesByIds(categoriesIds);
                     })
                     .then(categories => {
@@ -300,6 +303,8 @@ module.exports = function(models) {
                         return resolve(recipe);
                     })
                     .catch(err => {
+                        console.log('ERROR EDIT DATA' + err);
+
                         return reject(err);
                     });
             });

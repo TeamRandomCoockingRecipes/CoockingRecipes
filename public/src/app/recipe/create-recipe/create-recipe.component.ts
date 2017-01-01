@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { IRecipe } from '../recipe';
 
@@ -22,14 +23,29 @@ export class CreateRecipeComponent implements OnInit {
 
   constructor(private recipeService: RecipeService,
     private categoryService: CategoryService,
+    private router: Router,
     private _fb: FormBuilder) { }
 
   createRecipe() {
+    console.log(`IN CREATE RECIPE WITH ${this.newRecipe.title}`);
     this.assignFormValue('imageUrls');
     this.assignFormValue('ingredients');
-    this.newRecipe.ingredientsName = [];
-    this.newRecipe.ingredientsQuantity = [];
-    this.newRecipe.ingredientsUnits = [];
+
+    // adapt properties to server API
+    this.adaptToServerApi();
+
+    // console.log(this.newRecipe);
+
+    this.recipeService.createRecipe(this.newRecipe)
+      .subscribe(
+      recipe => {
+        console.log(recipe);
+      });
+
+    console.log(this.router.navigateByUrl('/recipes'));
+  }
+
+  private adaptToServerApi() {
     for (let ingredient of this.newRecipe.ingredients) {
       this.newRecipe.ingredientsName.push(ingredient.name);
       this.newRecipe.ingredientsQuantity.push(ingredient.quantity);
@@ -41,12 +57,6 @@ export class CreateRecipeComponent implements OnInit {
       images.push(url.imageUrl);
     }
     this.newRecipe.imageUrls = images;
-
-    console.log(this.newRecipe);
-
-    this.recipeService.createRecipe(this.newRecipe)
-      .subscribe(
-      recipe => console.log(recipe));
   }
 
   private assignFormValue(property: string) {
@@ -83,6 +93,9 @@ export class CreateRecipeComponent implements OnInit {
       title: '',
       categories: [],
       ingredients: [],
+      ingredientsName: [],
+      ingredientsQuantity: [],
+      ingredientsUnits: [],
       preparation: '',
       imageUrls: [],
       cookingTimeInMinutes: null

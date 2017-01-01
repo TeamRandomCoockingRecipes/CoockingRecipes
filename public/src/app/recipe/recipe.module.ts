@@ -13,6 +13,7 @@ import { RecipeFilterPipe } from './pipes/filter/recipe-filter.pipe';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { IngredientComponent } from './ingredient/ingredient.component';
 import { ImageUrlComponent } from './image-url/image-url.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ImageUrlComponent } from './image-url/image-url.component';
     RecipeFilterPipe,
     CreateRecipeComponent,
     IngredientComponent,
-    ImageUrlComponent
+    ImageUrlComponent,
+    EditRecipeComponent
   ],
   providers: [
     RecipeService

@@ -24,7 +24,8 @@ module.exports = function({ app, data }) {
     router
         .get("/", controller.getAllRecipes)
         .get("/:id", controller.getRecipeDetails)
-        .post("/", controller.createRecipe);
+        .post("/", controller.createRecipe)
+        .post("/edit/:id", controller.editRecipeById);
 
     app.use("/api/recipes", router);
 
