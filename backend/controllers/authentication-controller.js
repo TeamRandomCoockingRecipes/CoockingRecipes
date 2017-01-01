@@ -18,7 +18,7 @@ module.exports = function() {
             console.log("in postLogin: req.body ", req.body);  // to delete
 
             req.assert("email", "Невалиден Email адрес!!!").isEmail();
-            req.assert("password", "Паролата неможе да е празна!!!").notEmpty();
+            req.assert("password", "Паролата не може да е празна!!!").notEmpty();
             req.sanitize("email").normalizeEmail({ remove_dots: false });
             const errors = req.validationErrors();
 
@@ -73,7 +73,7 @@ module.exports = function() {
             console.log("controler postSignup:  ", req.body);  // da se iztrie
 
             req.assert("email", "Невалиден Email адрес!!!").isEmail();
-            req.assert("password", "Паролата трябва да бъде минимум 4 символа дълга!!!").len(4);
+            req.assert("password", "Паролата трябва да бъде дълга минимум 4 символа!!!").len(4);
             req.assert("confirmPassword", "Паролите не съвпадат!!!").equals(req.body.password);
             req.sanitize("email").normalizeEmail({ remove_dots: false });
 

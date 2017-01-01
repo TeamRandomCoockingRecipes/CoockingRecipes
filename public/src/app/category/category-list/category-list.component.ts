@@ -13,7 +13,8 @@ export class CategoryListComponent implements OnInit {
 
   private categories: ICategory[];
   private errorMessage: string;
-
+  
+  isUserLogged: boolean = localStorage.getItem("id_token") !== null;
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
