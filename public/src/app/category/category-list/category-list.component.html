@@ -1,3 +1,11 @@
+<p>Working!</p>
+
+<div class='panel-footer'>
+    <a class='btn btn-secondary' *ngIf="isUserLogged" [routerLink]="['/category', 'create']" style='width:120px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Create Category
+    </a>
+</div>
+
 <div *ngFor="let category of categories">
     <div>
         Title:
