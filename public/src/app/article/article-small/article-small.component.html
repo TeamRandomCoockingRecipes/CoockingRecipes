@@ -1,0 +1,17 @@
+<p>
+  article-small works!
+</p>
+
+<ul>
+  <li *ngFor="let article of ( articles | slice:articles?.length - 4 )"
+  class="col-sm-6 col-md-3">
+    <a href=""
+      [@changeOpacity]="state"
+      (mouseenter)="onMouseenter()"
+      (mouseleave)="onMouseleave()">
+      <img [src]="article.imgUrl" [alt]="article.title" />
+      <h3>{{article.title}}</h3>
+      <!--<p>{{article.content | slice:0:30}}</p>-->
+    </a>
+  </li>
+</ul>
