@@ -45,7 +45,22 @@ export class CategoryService {
             .catch(this.handleError);
     }
 
-
+    deleteCategory(category: ICategory): Observable<ICategory> {
+        return this.http.put(
+            `${this.categoryBackendUrl}/delete`,
+            category,
+            { headers: this.headers })
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+    editCategory(newCategory: ICategory): Observable<ICategory> {
+        return this.http.put(
+            `${this.categoryBackendUrl}/edit`,
+            newCategory,
+            { headers: this.headers })
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
     private extractData(res: Response) {
         let body = res.json();
         return body.data || { };

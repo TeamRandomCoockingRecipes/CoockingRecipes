@@ -1,0 +1,19 @@
+<div>
+    Edit Category
+</div>
+
+<div>
+    <form *ngIf="category" (ngSubmit)="editCategory()">
+        Title:
+        <input type="text" name="title" [(ngModel)]="category.name"> Image Url:
+        <input type="text" name="imgUrl" [(ngModel)]="category.imgUrl"> Description:
+        <input type="text" name="description" [(ngModel)]="category.description">
+        <button type="submit" class="btn-light">
+        Edit
+      </button>
+
+        <button (click)="onBack()" class="btn-light">
+        Back
+      </button>
+    </form>
+</div>

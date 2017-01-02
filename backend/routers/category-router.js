@@ -15,9 +15,10 @@ module.exports = function({
     router
         .get("/", controller.getAllCategories)
         .get("/:id", controller.getCategoryById)
-        .post("/", controller.createCategory);
-
-        // .get("/newest", controller.getNewestCategoriesAjax)
+        .post("/", controller.createCategory)
+        .put("/edit", controller.editCategoryById)
+        .put("/delete", controller.deleteCategoryById);
+    // .get("/newest", controller.getNewestCategoriesAjax)
 
     app.use("/categories/api", router);
 

@@ -1,18 +1,17 @@
-<p>
-    category-detail works!
-</p>
-
-<div>                
-  <img src="{{ category?.imgUrl }}" alt="{{ category?.name }}" width="50px">
-</div>
 <div>
-  Ttle:  {{ category?.name }}
+    <a class='btn btn-secondary' (click)='onEdit()' style='width:80px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Edit
+    </a>
+    <a class='btn btn-secondary' (click)='onDelete()' style='width:80px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Delete
+    </a>
+    <h1>{{category?.name}}</h1>
+    <img src="{{ category?.imgUrl }}" alt="{{ category?.name }}" width="150px">
+    <hr/>
+    <div *ngFor="let recipe of category?.recipes">
+        {{recipe?.title}}
+    </div>
 </div>
-
-<div *ngFor="let recipe of category?.recipes">
-   Recipe title: {{recipe?.title}}
-</div>
-
 <div class='panel-footer'>
     <a class='btn btn-secondary' (click)='onBack()' style='width:80px'>
         <i class='glyphicon glyphicon-chevron-left'></i> Back

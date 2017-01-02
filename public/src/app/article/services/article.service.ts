@@ -25,14 +25,14 @@ export class ArticleService {
     getArticles(): Observable<IArticle[]> {
         return this.http.get(this.articleBackendUrl)
             .map((response: Response) => <IArticle[]> response.json()['result'])
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError)
     }
 
     getArticle(id: string): Observable<IArticle> {
         return this.getArticles()
             .map((articles: IArticle[]) => articles.find(a => a._id === id))
-            .do(data => console.log(JSON.stringify(data)));
+            // .do(data => console.log(JSON.stringify(data)));
     }
 
     createArticle(newArticle: any): Observable<IArticle> {
@@ -41,7 +41,7 @@ export class ArticleService {
              newArticle,
              { headers: this.headers })
             .map((res: Response) => <IArticle> res.json())
-            .do(data => console.log("edited : " + JSON.stringify(data)))
+            // .do(data => console.log("edited : " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
