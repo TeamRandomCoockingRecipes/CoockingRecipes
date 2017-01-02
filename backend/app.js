@@ -3,7 +3,8 @@
 
 const config = require("./config");
 
-let data = require("./data")(config.connectionString["development"]);
+let data = require("./data")(config.connectionString["production"]);
+// let data = require("./data")(config.connectionString["development"]);
 
 const app = require("./config/application")({ data });
 
