@@ -1,0 +1,7 @@
+<div [formGroup]="imageUrlForm">
+    <input type="text" formControlName="imageUrl">
+    <br>
+    <small [hidden]="imageUrlForm.controls.imageUrl.valid" class="text-danger">
+        Линкът към снимка е задължителен
+    </small>
+</div>

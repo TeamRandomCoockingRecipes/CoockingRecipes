@@ -2,7 +2,7 @@
 "use strict";
 
 const DEFAULT_PAGE = 1,
-    PAGE_SIZE = 10;
+    PAGE_SIZE = 1000;
 const NEWEST_RECIPES_COUNT = 3;
 
 const constants = require("../config/constants");
@@ -64,6 +64,81 @@ function parseEmail(email) {
 module.exports = function(data) {
 
     const controller = {
+        editRecipeById(req, res) {
+            let id = req.params.id;
+            let {
+                title,
+                categories,
+                ingredients,
+                preparation,
+                imageUrls,
+                cookingTimeInMinutes,
+                isDeleted
+            } = parseRecipeData(req.body);
+
+            data.editRecipeById(
+                    id,
+                    title,
+                    categories,
+                    imageUrls,
+                    ingredients,
+                    preparation,
+                    cookingTimeInMinutes,
+                    isDeleted)
+                .then(recipe => {
+                    // if (!recipe) {
+                    //     return res.redirect("/");
+                    // }
+                    console.log('IN EDIT CONTROLLER' + recipe.isDeleted);
+
+                    return res.send({
+                        model: recipe,
+                        user: req.user
+                    });
+                })
+                .catch(err => {
+                    req.flash("error", { msg: constants.errorMessage + err });
+                    return res.redirect("/");
+                });
+        },
+        createRecipe(req, res) {
+            // let author = {
+            //     id: req.user._id,
+            //     name: req.user.profile.name || parseEmail(req.user.email),
+            //     imageUrl: req.user.profile.picture || "no picture"
+            // };
+
+            // console.log(`IN CreateRecipeController in server with ${req.body.title}`);
+            let author = {
+                id: 'anonumous',
+                name: 'anonymous',
+                imageUrl: "no picture"
+            };
+
+
+
+            let {
+                title,
+                categories,
+                ingredients,
+                preparation,
+                imageUrls,
+                cookingTimeInMinutes
+            } = parseRecipeData(req.body);
+            return data.createRecipe(
+                    title,
+                    categories,
+                    imageUrls,
+                    ingredients,
+                    preparation,
+                    cookingTimeInMinutes,
+                    author)
+                .then(console.log)
+                .catch(err => {
+                    res.status(400)
+                        .send(err);
+                });
+        },
         getRecipeDetails(req, res) {
             let id = req.params.id;
             data.getRecipeById(id)

@@ -35,6 +35,13 @@ export class RecipeDetailComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
+  onDelete(): void {
+  }
+
+  onEdit(): void {
+    this.router.navigate(['/recipe/edit/', this.recipe._id]);
+  }
+
   getRecipe(id: string) {
     this.recipeService.getRecipe(id)
       .subscribe(
@@ -45,5 +52,4 @@ export class RecipeDetailComponent implements OnInit {
   onBack(): void {
     this.router.navigate(['/recipes']);
   }
-
 }

@@ -11,7 +11,7 @@ import { IRecipe } from '../recipe'
 
 @Injectable()
 export class RecipeService {
-  private headers: Headers = new Headers({
+    private headers: Headers = new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     });
@@ -22,16 +22,39 @@ export class RecipeService {
 
     getRecipes(): Observable<IRecipe[]> {
         return this.http.get(this.recipesBackendUrl)
-            .map((response: Response) => <IRecipe[]> response.json()['recipes'])
+            .map((response: Response) => <IRecipe[]>response.json()['recipes'])
             // .do(data => console.log('All: ' + JSON.stringify(data)))
+            .do(data => console.log('All recipes: ' + data.length))
             .catch(this.handleError);
     }
 
     getRecipe(id: string): Observable<IRecipe> {
         let url = this.recipesBackendUrl + '/' + id;
         return this.http.get(url)
-            .map((response: Response) => <IRecipe> response.json()['recipe'])
+            .map((response: Response) => <IRecipe>response.json()['recipe'])
             // .do(data => console.log('recipe: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    createRecipe(newRecipe: any): Observable<IRecipe> {
+        // console.log(`In CreateRecipeService with ${newRecipe.title}`);
+        return this.http.post(
+            this.recipesBackendUrl,
+            newRecipe,
+            { headers: this.headers })
+            .map((res: Response) => <IRecipe>res.json())
+            .do(data => console.log("created : " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    editRecipe(editedRecipe: any): Observable<IRecipe> {
+        // console.log(`In EditRecipeService with ${editedRecipe.title}`);
+        return this.http.post(
+            this.recipesBackendUrl + '/edit/' + editedRecipe._id,
+            editedRecipe,
+            { headers: this.headers })
+            .map((res: Response) => <IRecipe>res.json())
+            .do(data => console.log("changed : " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

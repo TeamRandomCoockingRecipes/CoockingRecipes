@@ -1,7 +1,39 @@
 <div>
+    <a class='btn btn-secondary' (click)='onEdit()' style='width:80px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Edit
+    </a>
+    <a class='btn btn-secondary' (click)='onDelete()' style='width:80px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Delete
+    </a>
     <h1>{{recipe?.title}}</h1>
-    <img src="{{recipe?.imageUrls[0]}}" alt="{{recipe?.title}}" width="450px">
+    <img *ngFor="let imageUrl of recipe?.imageUrls" src="{{imageUrl}}" alt="{{recipe?.title}}" width="150px">
+    <h3>Съставки:</h3>
+    <ol>
+        <li *ngFor="let ingredient of recipe?.ingredients">
+            {{ingredient.name}} - {{ingredient.quantity}} {{ingredient.unit}}
+        </li>
+    </ol>
     <h3>Начин на приготвяне:</h3>
     <p>{{recipe?.preparation}}</p>
     <h5>Време за приготвяне: {{recipe?.cookingTimeInMinutes}}мин.</h5>
+    <br/>
+    <h5>Категории:</h5>
+    <ul>
+        <li *ngFor="let category of recipe?.categories">
+            {{category.name}}
+        </li>
+    </ul>
+    <br/>
+    <h5>Коментари:</h5>
+    <ul>
+        <li *ngFor="let comment of recipe?.comments">
+            {{comment.author.name}} commented on {{comment.created}}
+            <p>{{comment.content}}</p>
+        </li>
+    </ul>
+</div>
+<div class='panel-footer'>
+    <a class='btn btn-secondary' (click)='onBack()' style='width:80px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Back
+    </a>
 </div>

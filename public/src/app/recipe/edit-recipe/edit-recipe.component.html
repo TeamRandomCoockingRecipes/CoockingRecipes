@@ -1,0 +1,76 @@
+<div>
+    <form class="row" [formGroup]="editRecipeForm" novalidate (ngSubmit)="changeRecipe()">
+        <label for="recipeTitle">Име</label>
+        <input id="recipeTitle" type="text" [(ngModel)]="editedRecipe.title" formControlName="title" placeholder="Име">
+        <br>
+        <small *ngIf="!editRecipeForm.controls.title.valid" class="text-danger">
+            Името е задължително
+        </small>
+        <br>
+
+        <label for="recipeCookTime">Време за приготвяне</label>
+        <input id="recipeCookTime" type="text" [(ngModel)]="editedRecipe.cookingTimeInMinutes" formControlName="cookingTimeInMinutes" placeholder="Време за приготвяне [мин]">
+        <br>
+        <small *ngIf="!editRecipeForm.controls.cookingTimeInMinutes.valid" class="text-danger">
+            Времето за готвене е задължително число между 1 и 600 (минути)
+        </small>
+        <br>
+
+        <label for="recipePreparation">Начин на приготвяне</label>
+        <br>
+        <textarea id="recipePreparation" [(ngModel)]="editedRecipe.preparation" formControlName="preparation" placeholder="Начин на приготвяне">
+        </textarea>
+        <small *ngIf="!editRecipeForm.controls.preparation.valid" class="text-danger">
+            Начинът на приготвяне е задължително между 10 и 2000 символа
+        </small>
+        <br>
+
+        <h3>Снимки:</h3>
+        <div formArrayName="imageUrls">
+            <div *ngFor="let imageUrl of editRecipeForm.controls.imageUrls.controls; let i=index">
+                <div>
+                    <span>Линк към снимка {{i + 1}}</span>
+                    <button type="button" *ngIf="editRecipeForm.controls.imageUrls.controls.length > 1" (click)="removeImageUrl(i)">Премахни</button>
+                </div>
+
+                <div [formGroupName]="i">
+                    <image-url [groupImageUrl]="editRecipeForm.controls.imageUrls.controls[i]"></image-url>
+                </div>
+            </div>
+        </div>
+        <button type="button" (click)="addImageUrl()" style="cursor: default">Добави линк към снимка</button>
+        <br>
+        <h3>Съставки:</h3>
+        <div formArrayName="ingredients">
+            <div *ngFor="let ingredient of editRecipeForm.controls.ingredients.controls; let i=index">
+                <div>
+                    <span>Съставка {{i + 1}}</span>
+                    <button type="button" *ngIf="editRecipeForm.controls.ingredients.controls.length > 1" (click)="removeIngredient(i)">Премахни</button>
+                </div>
+                <div [formGroupName]="i">
+                    <recipe-ingredient [groupIngredient]="editRecipeForm.controls.ingredients.controls[i]"></recipe-ingredient>
+                </div>
+            </div>
+        </div>
+        <button type="button" (click)="addIngredient()" style="cursor: default">Добави съставка</button>
+        <br>
+        <h3>Категории:</h3>
+        <label *ngFor="let category of allCategories">
+                <input type="checkbox" (click)="selectCategory($event)" value="{{category._id}}" [checked]="editedRecipe.categories.indexOf(category._id) > -1">
+                {{category.name}}
+                <br>
+        </label>
+        <br>
+        <button type="submit" [disabled]="!editRecipeForm.valid" class=" btn-light ">
+          Change
+        </button>
+    </form>
+</div>
+
+<div>
+    <ol>
+        <li *ngFor="let recipe of recipes ">
+            <a [routerLink]="[ '/recipe', recipe._id] ">{{recipe.title}}</a>
+        </li>
+    </ol>
+</div>

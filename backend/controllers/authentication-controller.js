@@ -18,7 +18,7 @@ module.exports = function() {
             console.log("in postLogin: req.body ", req.body); // to delete
 
             req.assert("email", "Невалиден Email адрес!!!").isEmail();
-            req.assert("password", "Паролата неможе да е празна!!!").notEmpty();
+            req.assert("password", "Паролата не може да е празна!!!").notEmpty();
             req.sanitize("email").normalizeEmail({
                 remove_dots: false
             });
