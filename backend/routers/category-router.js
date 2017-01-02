@@ -16,6 +16,7 @@ module.exports = function({
         .get("/", controller.getAllCategories)
         .get("/:id", controller.getCategoryById)
         .post("/", controller.createCategory)
+        .put("/edit", controller.editCategoryById)
         .put("/delete", controller.deleteCategoryById);
     // .get("/newest", controller.getNewestCategoriesAjax)
 

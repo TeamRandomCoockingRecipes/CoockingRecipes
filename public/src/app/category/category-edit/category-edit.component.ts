@@ -7,14 +7,11 @@ import { CategoryService } from '../services/category.service';
 import { ICategory } from '../category';
 
 @Component({
-  selector: 'category-detail',
-  templateUrl: './category-detail.component.html',
-  styleUrls: ['./category-detail.component.css']
+  selector: 'app-category-edit',
+  templateUrl: './category-edit.component.html'
 })
-export class CategoryDetailComponent implements OnInit, OnDestroy {
-  pageTitle: string = 'Category detail';
+export class CategoryEditComponent implements OnInit {
   category: ICategory;
-
   errorMessage: string;
   private sub: Subscription;
 
@@ -22,15 +19,13 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
               private router: Router,
               private categoryService: CategoryService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.sub = this.route.params.subscribe(
       params => {
         let id = params['id'];
-        console.log("in detail category", id);
         this.getCategory(id);
-      });
+      });     
   }
-
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
@@ -40,24 +35,17 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
       .subscribe(
         category => this.category = category,
         error => this.errorMessage = <any>error);
-
-        console.log("in category detetail get category --- ", this.category);
   }
 
-  onBack(): void {
-    this.router.navigate(['/categories']);
-  }
-
-  onEdit() {
-    this.router.navigate(['/category/edit', this.category._id]);
-  }
-
-  onDelete() {
-    this.categoryService.deleteCategory(this.category)
+  editCategory() {
+    this.categoryService.editCategory(this.category)
       .subscribe(
-        category => console.log(category));
+        category => console.log("Server returns category: ", category),
+        error => this.errorMessage = <any>error);
+  }
 
-    this.onBack();
+  onBack() {
+    this.router.navigate(['/category', this.category._id]);
   }
 
 }

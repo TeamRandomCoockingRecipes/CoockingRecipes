@@ -110,6 +110,25 @@ module.exports = function(models) {
                     });
             });
         },
+        editCategoryById(id, name, imgUrl, description) {
+            return new Promise((resolve, reject) => {
+                Category.findByIdAndUpdate(id, {
+                        name,
+                        imgUrl,
+                        description
+                    }, {
+                        safe: true,
+                        new: true
+                    },
+                    (err, recipe) => {
+                        if (err) {
+                            return reject(err);
+                        }
+
+                        return resolve(recipe);
+                    });
+            });
+        },
         deleteCategory(id, name, imgUrl, description, isDeleted = true) {
             console.log("id deleted", isDeleted);
 

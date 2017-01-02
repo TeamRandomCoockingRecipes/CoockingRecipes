@@ -36,6 +36,22 @@ module.exports = function(data) {
                         .send(err);
                 });
         },
+        editCategoryById(req, res) {
+            let {
+                _id,
+                name,
+                imgUrl,
+                description
+            } = req.body;
+
+            return data.editCategoryById(_id, name, imgUrl, description)
+                .then(category => {
+                    return res.json({
+                        category
+                        // user: req.user
+                    });
+                });
+        },
         deleteCategoryById(req, res) {
             console.log("in category delete controler: req: ", req.body);
 
