@@ -54,9 +54,21 @@ export class RecipeService {
             editedRecipe,
             { headers: this.headers })
             .map((res: Response) => <IRecipe>res.json())
-            .do(data => console.log("changed : " + JSON.stringify(data)))
+            // .do(data => console.log("changed : " + JSON.stringify(data)))
             .catch(this.handleError);
     }
+
+    // markRecipeAsDeleted(deletedRecipe: any): Observable<IRecipe> {
+    //     // console.log(`In EditRecipeService with ${editedRecipe.title}`);
+    //     deletedRecipe['deleted'] = true;
+    //     return this.http.post(
+    //         this.recipesBackendUrl + '/edit/' + deletedRecipe._id,
+    //         deletedRecipe,
+    //         { headers: this.headers })
+    //         .map((res: Response) => <IRecipe>res.json())
+    //         .do(data => console.log("DELETED : " + JSON.stringify(data)))
+    //         .catch(this.handleError);
+    // }
 
     private handleError(error: Response) {
         console.log(error);

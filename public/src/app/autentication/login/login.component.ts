@@ -9,6 +9,7 @@ import { AuthenticationService } from '../service/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  private isWrongEmail = false;
 
   constructor(public router: Router, private authService: AuthenticationService) { }
 
@@ -22,8 +23,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['home']);
       },
       error => {
-        alert(error.text());
-        console.log(error.text());
+      
+        alert(error);
+        console.log(error);
       }
     );
   }

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class AuthenticationService {
@@ -24,9 +25,11 @@ export class AuthenticationService {
       `${this.baseUrl}/register`,
       body, 
       { headers: this.headers })
-      .map((result: Response) => <any> JSON.stringify(result))
+      .map(this.checkForErrors)
       .do(data => console.log("register : " + JSON.stringify(data)))
-      .catch(this.handleError);
+      // .catch(err => Observable.throw(err))
+      .catch(this.handleError)
+      .map((result: Response) => <any> JSON.stringify(result))
   }
 
   login(email: string, password: string): Observable<any> {
@@ -36,19 +39,35 @@ export class AuthenticationService {
       `${this.baseUrl}/login`,
        body, 
        { headers: this.headers })
-       .map((result: Response) => <any> JSON.stringify(result))
+       .map(this.checkForErrors)
        .do(data => console.log("login : " + JSON.stringify(data)))
-       .catch(this.handleError);
-
+       .catch(this.handleError)
+       .map((result: Response) => <any> JSON.stringify(result));
   }
 
   logout() {
 
   }
 
-  private handleError(error: Response) {
-        console.log(error);
-        return Observable.throw(error.json().error || 'Server error');
+  isLogedIn() {
+
   }
 
+  private handleError(error: Response) {
+        console.log("handleError: ", error);
+        return Observable.throw(error.statusText || 'Server error');
+  }
+
+  checkForErrors(resp: Response) {
+    console.log("checkForErrors:    ", resp);
+        if (resp.status >= 200 && resp.status < 300) {
+            return resp
+        } else {
+          console.log(resp);
+            let error = new Error(resp.statusText)
+            error['response'] = resp
+            console.log("my error:   ",error)
+            throw error
+        }
+    }
 }

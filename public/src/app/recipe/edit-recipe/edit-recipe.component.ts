@@ -24,7 +24,8 @@ export class EditRecipeComponent implements OnInit {
     ingredientsUnits: [],
     preparation: '',
     imageUrls: [],
-    cookingTimeInMinutes: null
+    cookingTimeInMinutes: null,
+    deleted: false
   };
   private recipes: IRecipe[];
   private errorMessage: string;
@@ -41,6 +42,7 @@ export class EditRecipeComponent implements OnInit {
     this.assignFormValue('imageUrls');
     this.assignFormValue('ingredients');
     this.adaptToServerApi();
+    console.log(this.editedRecipe.deleted);
 
     this.recipeService.editRecipe(this.editedRecipe)
       .subscribe(

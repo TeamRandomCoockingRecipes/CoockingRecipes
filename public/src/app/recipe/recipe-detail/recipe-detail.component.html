@@ -1,12 +1,12 @@
 <div>
-    <a class='btn btn-secondary' (click)='onEdit()' style='width:80px'>
-        <i class='glyphicon glyphicon-chevron-left'></i> Edit
+    <a [appHighlight]="editColor" class="btn btn-secondary" (click)="onEdit()">
+        <i class="glyphicon glyphicon-chevron-left"></i> Edit
     </a>
-    <a class='btn btn-secondary' (click)='onDelete()' style='width:80px'>
-        <i class='glyphicon glyphicon-chevron-left'></i> Delete
+    <a [appHighlight]="deleteColor" class="btn btn-secondary" (click)="onDelete()" disabled=true>
+        <i class="glyphicon glyphicon-chevron-left"></i> Delete
     </a>
     <h1>{{recipe?.title}}</h1>
-    <img *ngFor="let imageUrl of recipe?.imageUrls" src="{{imageUrl}}" alt="{{recipe?.title}}" width="150px">
+    <img [appHover]="hoveredImgWidth" *ngFor="let imageUrl of recipe?.imageUrls" src="{{imageUrl}}" alt="{{recipe?.title}}">
     <h3>Съставки:</h3>
     <ol>
         <li *ngFor="let ingredient of recipe?.ingredients">
@@ -32,8 +32,8 @@
         </li>
     </ul>
 </div>
-<div class='panel-footer'>
-    <a class='btn btn-secondary' (click)='onBack()' style='width:80px'>
-        <i class='glyphicon glyphicon-chevron-left'></i> Back
+<div class="panel-footer">
+    <a [appHighlight]="backColor" class="btn btn-secondary" (click)="onBack()">
+        <i class="glyphicon glyphicon-chevron-left"></i> Back
     </a>
 </div>
