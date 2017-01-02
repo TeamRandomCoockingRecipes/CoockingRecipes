@@ -9,11 +9,13 @@ import { AuthenticationService } from '../service/authentication.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  private isDuplicatedUserError: boolean = false;
 
   constructor(private router: Router, private authService: AuthenticationService) { }
 
   signup(event, email, password) {
     event.preventDefault();
+    this.isDuplicatedUserError = false;
 
     this.authService.register(email, password)
     .subscribe(
@@ -22,8 +24,9 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['home']);
     },
     error => {
-      alert(error.text());
-      console.log(error.text());
+      this.isDuplicatedUserError = true;
+      // alert(error);
+      // console.log(error);
     }
     );
   }
@@ -31,6 +34,10 @@ export class SignupComponent implements OnInit {
   login(event) {
     event.preventDefault();
     this.router.navigate(['login']);
+  }
+
+  userEmailUpdated() {
+    this.isDuplicatedUserError = false;
   }
 
   ngOnInit() {
