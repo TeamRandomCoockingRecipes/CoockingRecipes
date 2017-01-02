@@ -17,7 +17,8 @@ export class CategoryService {
     });
 
     private articlesUrl = 'api/testStore/articles.json';
-    private categoryBackendUrl = 'http://localhost:3005/categories/api';
+    // private categoryBackendUrl = 'http://localhost:3005/categories/api';
+    private categoryBackendUrl = 'https://cooking-recipes-2.herokuapp.com/categories/api';
 
     constructor(private http: Http) { }
 
