@@ -9,5 +9,5 @@ export interface IRecipe {
     created: Date,
     author: any,
     comments: any[],
-    isDeleted: boolean
+    deleted: boolean
 }

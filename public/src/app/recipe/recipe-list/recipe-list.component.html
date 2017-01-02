@@ -6,12 +6,12 @@
 </div>
 <div *ngFor="let recipe of recipes | recipeFilter: listFilter">
     <div>
-        <img src="{{recipe.imageUrls[0]}}" alt="{{recipe.title}}" width="50px">
+        <img [appHover]="hoveredImgWidth" src="{{recipe.imageUrls[0]}}" alt="{{recipe.title}}">
         <a [routerLink]="['/recipe', recipe._id]"> {{ recipe.title }}</a>
     </div>
 </div>
 <div class='panel-footer'>
-    <a class='btn btn-secondary' [routerLink]="['/recipe', 'create']" style='width:120px'>
+    <a [appHighlight]="addColor" class='btn btn-secondary' [routerLink]="['/recipe', 'create']">
         <i class='glyphicon glyphicon-chevron-left'></i> Add Recipe
     </a>
 </div>

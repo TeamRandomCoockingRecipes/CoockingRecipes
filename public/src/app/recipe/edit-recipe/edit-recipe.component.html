@@ -7,6 +7,8 @@
             Името е задължително
         </small>
         <br>
+        <!--<input type="checkbox" [(ngModel)]="editedRecipe.deleted"> Deleted
+        <br>-->
 
         <label for="recipeCookTime">Време за приготвяне</label>
         <input id="recipeCookTime" type="text" [(ngModel)]="editedRecipe.cookingTimeInMinutes" formControlName="cookingTimeInMinutes" placeholder="Време за приготвяне [мин]">
@@ -61,6 +63,7 @@
                 <br>
         </label>
         <br>
+
         <button type="submit" [disabled]="!editRecipeForm.valid" class=" btn-light ">
           Change
         </button>
