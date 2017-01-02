@@ -28,12 +28,31 @@ module.exports = function(data) {
                 .then(categories => {
                     return res.send({
                         result: categories
-                        // user: req.user
+                            // user: req.user
                     });
                 })
                 .catch(err => {
                     res.status(400)
                         .send(err);
+                });
+        },
+        deleteCategoryById(req, res) {
+            console.log("in category delete controler: req: ", req.body);
+
+            let {
+                _id,
+                name,
+                imgUrl,
+                description
+            } = req.body;
+
+            return data.deleteCategory(_id, name, imgUrl, description)
+                .then(category => {
+                    console.log("in category delete response controler:  ", category);
+                    return res.json({
+                        category
+                        // user
+                    });
                 });
         },
 
@@ -58,18 +77,18 @@ module.exports = function(data) {
         //                 .send(err);
         //         });
         // },
-        getCategoryByName(req, res) {
-            let name = req.params.name;
+        // getCategoryByName(req, res) {
+        //   let name = req.params.name;
 
-            return data.getCategoryByName(name)
-                .then(category => {
-                    res.send(category);
-                })
-                .catch(err => {
-                    res.status(400)
-                        .send(err);
-                });
-        },
+        //  return data.getCategoryByName(name)
+        //     .then(category => {
+        //         res.send(category);
+        //    })
+        //    .catch(err => {
+        //       res.status(400)
+        //          .send(err);
+        //  });
+        // },
         getCategoryById(req, res) {
             let id = req.params.id;
 

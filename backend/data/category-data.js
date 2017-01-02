@@ -4,7 +4,7 @@ const dataUtils = require("./utils/data-utils");
 
 const MIN_PATTERN_LENGTH = 3;
 
-module.exports = function (models) {
+module.exports = function(models) {
     let {
         Category
     } = models;
@@ -107,6 +107,28 @@ module.exports = function (models) {
 
                         console.log("getNewestCategories: ", categories);
                         return resolve(categories);
+                    });
+            });
+        },
+        deleteCategory(id, name, imgUrl, description, isDeleted = true) {
+            console.log("id deleted", isDeleted);
+
+            return new Promise((resolve, reject) => {
+                Category.findByIdAndUpdate(id, {
+                        name,
+                        imgUrl,
+                        description,
+                        isDeleted
+                    }, {
+                        safe: true,
+                        new: true
+                    },
+                    (err, recipe) => {
+                        if (err) {
+                            return reject(err);
+                        }
+
+                        return resolve(recipe);
                     });
             });
         },
