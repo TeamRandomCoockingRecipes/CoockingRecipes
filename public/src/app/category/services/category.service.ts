@@ -24,14 +24,14 @@ export class CategoryService {
     getCategories(): Observable<ICategory[]> {
         return this.http.get(this.categoryBackendUrl)
             .map((response: Response) => <ICategory[]> response.json()['result'])
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError)
     }
 
     getCategory(id: string): Observable<ICategory> {
         return this.getCategories()
             .map((categories: ICategory[]) => categories.find(c => c._id === id))
-            .do(data => console.log(JSON.stringify(data)));
+            // .do(data => console.log(JSON.stringify(data)));
     }
 
     createCategory(newCategory: any): Observable<ICategory> {
@@ -40,7 +40,7 @@ export class CategoryService {
              newCategory,
              { headers: this.headers })
             .map((res: Response) => <ICategory> res.json())
-            .do(data => console.log("edited : " + JSON.stringify(data)))
+            // .do(data => console.log("edited : " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

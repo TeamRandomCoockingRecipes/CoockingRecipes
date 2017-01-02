@@ -1,3 +1,5 @@
-<p>
-  home works!
-</p>
+<cook-articles-list-short  *ngIf="isLoaded" [@slideInPanel]="'in'" class="panel"></cook-articles-list-short>
+
+<cook-categories-list-short  *ngIf="isLoaded" [@slideInPanel]="'in'" class="panel"></cook-categories-list-short>
+
+<cook-recipes-list-short  *ngIf="isLoaded" [@slideInPanel]="'in'" class="panel"></cook-recipes-list-short>

@@ -9,6 +9,7 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
 
 import { CategoryService } from './services/category.service';
 import { CategoryRoutes } from './category.routing';
+import { CategoriesListShortComponent } from './categories-list-short/categories-list-short.component';
 
 @NgModule({
   imports: [
@@ -19,13 +20,15 @@ import { CategoryRoutes } from './category.routing';
   declarations: [
     CategoryListComponent,
     CategoryDetailComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    CategoriesListShortComponent
   ],
   providers: [CategoryService],
   exports: [
     CategoryListComponent,
     CategoryDetailComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    CategoriesListShortComponent
   ]
 })
 export class CategoryModule { }

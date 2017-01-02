@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { IRecipe } from '../recipe';
-
 import { RecipeService } from '../services/recipe.service';
 
 @Component({
@@ -13,6 +12,11 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
   pageTitle: string = 'Recipe details';
+  private editColor: string = 'lightgreen';
+  private deleteColor: string = 'red';
+  private backColor: string = 'violet';
+  private hoveredImgWidth: string = '300px';
+
   private recipe: IRecipe;
   private errorMessage: string;
   private sub: Subscription;
@@ -36,6 +40,10 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDelete(): void {
+    // this.recipeService.markRecipeAsDeleted(this.recipe)
+    //   .subscribe(
+    //   () => this.router.navigate(['/recipes']),
+    //   error => this.errorMessage = <any>error);
   }
 
   onEdit(): void {

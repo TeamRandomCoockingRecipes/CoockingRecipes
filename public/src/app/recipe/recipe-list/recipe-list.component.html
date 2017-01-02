@@ -1,17 +1,25 @@
-<div class="row">
-    <div class="col-md-2">Filter by:</div>
-    <div class="col-md-4">
+ <div class="row header">
+    <div class="col-md-3">
+        <a [appHighlight]="addColor"
+            class='btn btn-secondary'
+            [routerLink]="['/recipe', 'create']">
+            <i class='glyphicon glyphicon-chevron-left'></i> Add Recipe
+        </a>
+    </div>
+    <div class="col-md-9">
+        <label for="filterInput">Filter by:</label>
         <input type="text" [(ngModel)]="listFilter" placeholder="Filter" />
     </div>
 </div>
-<div *ngFor="let recipe of recipes | recipeFilter: listFilter">
-    <div>
-        <img src="{{recipe.imageUrls[0]}}" alt="{{recipe.title}}" width="50px">
-        <a [routerLink]="['/recipe', recipe._id]"> {{ recipe.title }}</a>
+<div class="row">
+    <div *ngFor="let recipe of recipes | recipeFilter: listFilter" class="recipe col-lg-3 col-sm-6" >
+        <div [appHover]="hoveredImgStyle" class="image-wrapper">
+            <img src="{{recipe.imageUrls[0]}}" alt="{{recipe.title}}">
+        </div>
+        <h2>
+            <a [routerLink]="['/recipe', recipe._id]">
+                {{ recipe.title }}
+            </a>
+        </h2>
     </div>
-</div>
-<div class='panel-footer'>
-    <a class='btn btn-secondary' [routerLink]="['/recipe', 'create']" style='width:120px'>
-        <i class='glyphicon glyphicon-chevron-left'></i> Add Recipe
-    </a>
 </div>

@@ -1,19 +1,26 @@
-<p>Working!</p>
-
-<div class='panel-footer'>
-    <a class='btn btn-secondary' *ngIf="isUserLogged" [routerLink]="['/category', 'create']" style='width:120px'>
-        <i class='glyphicon glyphicon-chevron-left'></i> Create Category
-    </a>
-</div>
-
-<div *ngFor="let category of categories">
-    <div>
-        Title:
-        <a [routerLink]="['/category', category._id]">
-      {{ category.name }}
-    </a>
+ <div class="row header">
+    <div class="col-md-3">
+        <a class="btn btn-success"
+            *ngIf="isUserLogged"
+            [routerLink]="['/category', 'create']"
+            style="width:150px">
+            <i class='glyphicon glyphicon-chevron-left'></i> Create Category
+        </a>
     </div>
-    <div>
-        Image: <img src="{{ category.imgUrl }}" alt="{{category.name}}" width="50px">
+    <!--<div class="col-md-9">
+        <label for="filterInput">Filter by:</label>
+        <input id="filterInput" type="text" [(ngModel)]="listFilter" placeholder="Filter" />
+    </div>-->
+</div>
+<div class="row">
+    <div *ngFor="let category of categories" class="category col-lg-3 col-sm-6" >
+        <div class="image-wrapper">
+            <img src="{{ category.imgUrl }}" alt="{{category.name}}">
+        </div>
+        <h2>
+            <a [routerLink]="['/category', category._id]">
+                {{ category.name }}
+            </a>
+        </h2>
     </div>
 </div>

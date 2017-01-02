@@ -1,0 +1,35 @@
+.header {
+    margin: 50px 0;
+}
+
+.category {
+    text-align: center;
+}
+
+.image-wrapper {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+img {
+    height: 100%;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 575px) {
+    .image-wrapper {
+        width: 100%;
+    }
+
+    img {
+        height: auto;
+        width: 100%;
+        margin-top: -20%;
+    }
+}

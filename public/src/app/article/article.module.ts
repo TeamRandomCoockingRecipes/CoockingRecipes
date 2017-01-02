@@ -14,6 +14,7 @@ import { ArticleFilterPipe } from './pipes/filter/article-filter.pipe';
 import { ArticleRoutes } from './article.routing';
 // import { AppService } from './services/app/app.service';
 import { ArticleService } from './services/article.service';
+import { ArticlesListShortComponent } from '../article/articles-list-short/articles-list-short.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ArticleService } from './services/article.service';
     ArticleDetailComponent,
     CreateArticleComponent,
     EditArticleComponent,
-    ArticleFilterPipe
+    ArticleFilterPipe,
+    ArticlesListShortComponent
   ],
   providers: [
     // AppService,
@@ -35,7 +37,8 @@ import { ArticleService } from './services/article.service';
   ],
   exports: [
     ArticleDetailComponent, // не е задължително да го експортваме (поне засега)
-    ArticleListComponent
+    ArticleListComponent,
+    ArticlesListShortComponent
   ]
 })
 export class ArticleModule { }

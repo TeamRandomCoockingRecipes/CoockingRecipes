@@ -15,6 +15,10 @@ import { IngredientComponent } from './ingredient/ingredient.component';
 import { ImageUrlComponent } from './image-url/image-url.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
+import { HighlightDirective } from '../directives/highlight.directive';
+import { HoverDirective } from '../directives/hover.directive';
+import { RecipesListShortComponent } from './recipes-list-short/recipes-list-short.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -29,7 +33,13 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     CreateRecipeComponent,
     IngredientComponent,
     ImageUrlComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    HoverDirective,
+    HighlightDirective,
+    RecipesListShortComponent
+  ],
+  exports: [
+    RecipesListShortComponent
   ],
   providers: [
     RecipeService
