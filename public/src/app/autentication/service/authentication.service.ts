@@ -21,9 +21,9 @@ export class AuthenticationService {
     this.logedIn = !!localStorage.getItem('auth_token');
    }
 
-  register(email: string, password: string, confirmPassword: string): Observable<any> {
+  register(email: string, password: string): Observable<any> {
     // let body = JSON.stringify({ email, password, confirmPassword });
-    let body = { email, password, confirmPassword };
+    let body = { email, password};
 
     return this.http.post(
       `${this.baseUrl}/register`,

@@ -10,7 +10,6 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class SignupComponent implements OnInit {
   private isDuplicatedUserError: boolean = false;
-    confirmPassword: string = '12345';
 
   constructor(private router: Router, private authService: AuthenticationService) { }
 
@@ -21,7 +20,7 @@ export class SignupComponent implements OnInit {
     this.isDuplicatedUserError = false;
 
 
-    this.authService.register(email, password, this.confirmPassword)
+    this.authService.register(email, password)
       .subscribe(
         response => {
           localStorage.setItem('auth_token', response);
