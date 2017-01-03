@@ -75,7 +75,7 @@ module.exports = function() {
 
             req.assert("email", "Невалиден Email адрес!").isEmail();
             req.assert("password", "Паролата трябва да бъде минимум 4 символа дълга!").len(4);
-            req.assert("confirmPassword", "Паролите не съвпадат!").equals(req.body.password);
+            // req.assert("confirmPassword", "Паролите не съвпадат!").equals(req.body.password);
             req.sanitize("email").normalizeEmail({
                 remove_dots: false
             });

@@ -11,6 +11,7 @@
         <input type="text" [(ngModel)]="listFilter" placeholder="Filter" />
     </div>
 </div>
+
 <div class="row">
     <div *ngFor="let recipe of recipes | recipeFilter: listFilter" class="recipe col-lg-3 col-sm-6" >
         <div [appHover]="hoveredImgStyle" class="image-wrapper">
