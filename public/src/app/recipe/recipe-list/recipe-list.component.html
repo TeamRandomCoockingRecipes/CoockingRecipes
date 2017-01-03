@@ -1,4 +1,4 @@
- <div class="row header">
+ <div *ngIf="isUserLogged" class="row header">
     <div class="col-md-3">
         <a [appHighlight]="addColor"
             class='btn btn-secondary'

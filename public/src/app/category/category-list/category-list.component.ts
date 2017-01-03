@@ -4,6 +4,8 @@ import { ICategory } from '../../category/category';
 
 import { CategoryService } from '../../category/services/category.service';
 
+import { AuthenticationService } from '../../autentication/service/authentication.service';
+
 @Component({
   selector: 'app-category',
   templateUrl: './category-list.component.html',
@@ -14,8 +16,11 @@ export class CategoryListComponent implements OnInit {
   private categories: ICategory[];
   private errorMessage: string;
   
-  isUserLogged: boolean = localStorage.getItem("id_token") !== null;
-  constructor(private categoryService: CategoryService) { }
+  private isUserLogged: boolean = this.authService.isLogedIn();
+
+  constructor(
+    private categoryService: CategoryService, 
+    private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.categoryService.getCategories()

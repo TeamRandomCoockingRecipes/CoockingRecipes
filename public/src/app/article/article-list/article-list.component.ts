@@ -4,6 +4,7 @@ import { IArticle } from '../article';
 import { ArticleFilterPipe } from '../pipes/filter/article-filter.pipe';
 import { ArticleService } from '../services/article.service';
 import { PagerService } from '../../shared/services/paager/pager.service';
+import { AuthenticationService } from '../../autentication/service/authentication.service';
 
 @Component({
   selector: 'article-list',
@@ -13,14 +14,18 @@ import { PagerService } from '../../shared/services/paager/pager.service';
 export class ArticleListComponent implements OnInit {
   articlesAll: IArticle[];
   listFilter: string;
-  isUserLogged: boolean = localStorage.getItem("id_token") !== null;
+  // isUserLogged: boolean = localStorage.getItem('auth_token') !== null;
+  isUserLogged: boolean = this.authService.isLogedIn();
 
   pager: any = {};
   pagedArticles: any[];
 
   private errorMessage: string;
 
-  constructor(private articleService: ArticleService, private pagerService: PagerService) { }
+  constructor(
+    private articleService: ArticleService, 
+    private pagerService: PagerService,
+    private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.articleService.getArticles()

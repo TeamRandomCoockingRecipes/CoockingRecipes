@@ -3,8 +3,6 @@
 
 const passport = require("passport"),
     LocalStrategy = require("passport-local").Strategy,
-    // FacebookStrategy = require("passport-facebook").Strategy,
-    // OAth = require("../config/facebook-oath"),
     User = require("../models/user-model");
 
 module.exports = function({ app, data }) {
@@ -30,48 +28,6 @@ module.exports = function({ app, data }) {
             });
         });
     }));
-
-    // passport.use(new FacebookStrategy({
-    //     clientID: OAth.facebookOath.clientID,
-    //     clientSecret: OAth.facebookOath.clientSecret,
-    //     callbackURL: OAth.facebookOath.callbackURL,
-    //     profileFields: ["name", "email", "link", "locale", "timezone"],
-    //     passReqToCallback: true
-    // }, (req, accessToken, refreshToken, profile, done) => {
-
-    //     User.findOne({ facebook: profile.id }, (err, existingUser) => {
-
-    //         process.nextTick(function() {
-    //             User.findOne({ "facebook.id": profile.id }, function(err, user) {
-
-    //                 if (err) {
-    //                     return done(err);
-    //                 }
-
-    //                 if (user) {
-    //                     return done(null, user);
-    //                 } else {
-    //                     let newUser = new User();
-
-    //                     newUser.email = profile.emails[0].value;
-    //                     newUser.facebook.id = profile.id;
-    //                     newUser.facebook.token = accessToken;
-    //                     newUser.facebook.name = profile.name.givenName + " " + profile.name.familyName;
-    //                     newUser.facebook.email = profile.emails[0].value;
-    //                     newUser.facebook.picture = `https://graph.facebook.com/${profile.id}/picture?type=large`;
-
-    //                     newUser.save(function(err) {
-    //                         if (err) {
-    //                             throw err;
-    //                         }
-
-    //                         return done(null, newUser);
-    //                     });
-    //                 }
-    //             });
-    //         });
-    //     });
-    // }));
 
     passport.serializeUser((user, done) => {
         if (user) {

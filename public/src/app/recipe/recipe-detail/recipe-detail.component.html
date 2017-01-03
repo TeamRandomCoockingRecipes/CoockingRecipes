@@ -1,8 +1,8 @@
 <div>
-    <a [appHighlight]="editColor" class="btn btn-secondary" (click)="onEdit()">
+    <a *ngIf="isUserLogged" [appHighlight]="editColor" class="btn btn-secondary" (click)="onEdit()">
         <i class="glyphicon glyphicon-chevron-left"></i> Edit
     </a>
-    <a [appHighlight]="deleteColor" class="btn btn-secondary" (click)="onDelete()" disabled=true>
+    <a *ngIf="isUserLogged" [appHighlight]="deleteColor" class="btn btn-secondary" (click)="onDelete()" disabled=true>
         <i class="glyphicon glyphicon-chevron-left"></i> Delete
     </a>
     <h1>{{recipe?.title}}</h1>

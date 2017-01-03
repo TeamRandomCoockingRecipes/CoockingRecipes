@@ -1,0 +1,14 @@
+<h2>Last recipes</h2>
+<ul>
+  <li *ngFor="let recipe of ( recipes | slice:recipes?.length - 4 ); let i = index"
+  class="col-sm-6 col-md-3" [class.hovered]="hoveredIndex > -1">
+    <a href=""
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = -1"
+    [class.hovered]="hoveredIndex === i">
+      <img [src]="recipe.imageUrls" [alt]="recipe.title" />
+      <h3>{{recipe.title}}</h3>
+      <!--<p>{{recipe.content | slice:0:30}}</p>-->
+    </a>
+  </li>
+</ul>

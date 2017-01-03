@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { AuthenticationService } from '../../autentication/service/authentication.service';
 import { ArticleService } from '../services/article.service';
 import { IArticle } from '../article';
 
@@ -12,15 +13,17 @@ import { IArticle } from '../article';
   styleUrls: ['./article-detail.component.css']
 })
 export class ArticleDetailComponent implements OnInit, OnDestroy {
-  pageTitle: string = 'Article detail';
-  article: IArticle;
+  private pageTitle: string = 'Article detail';
+  private article: IArticle;
+  private isUserLogged: boolean = this.authService.isLogedIn();
 
   errorMessage: string;
   private sub: Subscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private articleService: ArticleService) { }
+              private articleService: ArticleService,
+              private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(

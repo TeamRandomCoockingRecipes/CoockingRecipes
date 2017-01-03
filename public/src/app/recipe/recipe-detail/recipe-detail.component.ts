@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { IRecipe } from '../recipe';
 import { RecipeService } from '../services/recipe.service';
+import { AuthenticationService } from '../../autentication/service/authentication.service';
 
 @Component({
   selector: 'recipe-detail',
@@ -11,7 +12,8 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  pageTitle: string = 'Recipe details';
+  private pageTitle: string = 'Recipe details';
+  private isUserLogged: boolean = this.authService.isLogedIn();
   private editColor: string = 'lightgreen';
   private deleteColor: string = 'red';
   private backColor: string = 'violet';
@@ -24,7 +26,8 @@ export class RecipeDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {

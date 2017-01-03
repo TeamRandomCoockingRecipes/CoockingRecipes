@@ -15,11 +15,15 @@ export class AuthenticationService {
     });
 
   private baseUrl: string = 'http://localhost:3005/api/autenticate';
+  logedIn: boolean = false;
 
-  constructor(private http: Http, private route: Router) { }
+  constructor(private http: Http, private route: Router) {
+    this.logedIn = !!localStorage.getItem('auth_token');
+   }
 
-  register(email: string, password: string): Observable<any> {
-    let body = JSON.stringify({ email, password });
+  register(email: string, password: string, confirmPassword: string): Observable<any> {
+    // let body = JSON.stringify({ email, password, confirmPassword });
+    let body = { email, password, confirmPassword };
 
     return this.http.post(
       `${this.baseUrl}/register`,
@@ -43,6 +47,14 @@ export class AuthenticationService {
        .do(data => console.log("login : " + JSON.stringify(data)))
        .catch(this.handleError)
        .map((result: Response) => <any> JSON.stringify(result));
+      //  .map((result) => {
+      //    if (result.succsess) {
+      //      localStorage.setItem('auth_token', result)
+      //      this.logedIn = true;
+      //    }
+
+      //    return result.success;
+      //  });
   }
 
   logout() {
@@ -50,7 +62,7 @@ export class AuthenticationService {
   }
 
   isLogedIn() {
-
+    return this.logedIn;
   }
 
   private handleError(error: Response) {

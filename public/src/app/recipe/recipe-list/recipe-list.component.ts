@@ -4,6 +4,8 @@ import { IRecipe } from '../recipe';
 
 import { RecipeService } from '../services/recipe.service';
 
+import { AuthenticationService } from '../../autentication/service/authentication.service';
+
 @Component({
   selector: 'recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -14,8 +16,11 @@ export class RecipeListComponent implements OnInit {
   private recipes: IRecipe[];
   private hoveredImgStyle: string = '0 0 10px rgba(0, 0, 0, 0.8)';
   private errorMessage: string;
+  private isUserLogged: boolean = this.authService.isLogedIn();
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private recipeService: RecipeService,
+    private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.recipeService.getRecipes()

@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password)
     .subscribe(
       response => {
-        localStorage.setItem('id_token', response);
+        localStorage.setItem('auth_token', response);
+        this.authService.logedIn = true;
         this.router.navigate(['home']);
       },
       error => {
@@ -28,6 +29,13 @@ export class LoginComponent implements OnInit {
         console.log(error);
       }
     );
+
+    // this.authService.login(email, password)
+    //   .subscribe((result) => {
+    //     if (result) {
+    //       this.router.navigate(['home']);
+    //     }
+    //   });
   }
 
   // signup(event) {

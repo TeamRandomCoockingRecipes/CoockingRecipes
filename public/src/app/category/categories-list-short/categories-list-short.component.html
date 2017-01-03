@@ -1,0 +1,14 @@
+<h2>Last categories</h2>
+<ul>
+  <li *ngFor="let category of ( categories | slice:categories?.length - 4 ); let i = index"
+  class="col-sm-6 col-md-3" [class.hovered]="hoveredIndex > -1">
+    <a href=""
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = -1"
+    [class.hovered]="hoveredIndex === i">
+      <img [src]="category.imgUrl" [alt]="category.name" />
+      <h3>{{category.name}}</h3>
+      <!--<p>{{category | slice:0:30}}</p>-->
+    </a>
+  </li>
+</ul>

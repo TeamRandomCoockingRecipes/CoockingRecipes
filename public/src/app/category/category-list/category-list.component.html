@@ -1,9 +1,6 @@
- <div class="row header">
+<div class="row header" *ngIf="isUserLogged">
     <div class="col-md-3">
-        <a class="btn btn-success"
-            *ngIf="isUserLogged"
-            [routerLink]="['/category', 'create']"
-            style="width:150px">
+        <a class="btn btn-success" [routerLink]="['/category', 'create']" style="width:150px">
             <i class='glyphicon glyphicon-chevron-left'></i> Create Category
         </a>
     </div>
@@ -13,7 +10,7 @@
     </div>-->
 </div>
 <div class="row">
-    <div *ngFor="let category of categories" class="category col-lg-3 col-sm-6" >
+    <div *ngFor="let category of categories" class="category col-lg-3 col-sm-6">
         <div class="image-wrapper">
             <img src="{{ category.imgUrl }}" alt="{{category.name}}">
         </div>

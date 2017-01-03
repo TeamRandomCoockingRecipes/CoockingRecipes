@@ -6,14 +6,6 @@ const passport = require("passport");
 
 module.exports = function() {
     return {
-        // getLogin(req, res) {  // da se iztrie
-        //     if (req.user) {
-        //         return res.redirect("/");
-        //     }
-        //     res.send({
-        //         title: "Login"
-        //     });
-        // },
         postLogin(req, res, next) {
             console.log("in postLogin: req.body ", req.body); // to delete
 
@@ -46,8 +38,8 @@ module.exports = function() {
                     // return res.redirect("/login");
                     console.log("authenticate:   ", new Error(info.msg));
                     return res
-                            .status(404)
-                            .json();
+                        .status(404)
+                        .json();
                 }
 
                 req.logIn(user, (err) => {
@@ -101,16 +93,29 @@ module.exports = function() {
             console.log("controler postSignup: errors ", errors); // da se iztrie
 
             if (errors) {
-                req.flash("errors", errors);
+                return req.flash("errors", errors);
                 // return res.redirect("/register");
             }
+
+            console.log("--------is before create user");
+            let params = JSON.stringify({
+                email: req.body.email,
+                password: req.body.password
+            });
+            console.log("params:   ", params);
+            // const user = new User({
+            //     email: req.body.email,
+            //     password: req.body.password
+            // });
 
             const user = new User({
                 email: req.body.email,
                 password: req.body.password
             });
+            // user.email = req.body.email;
+            // user.password = req.body.password;
 
-            console.log("controler postSignup: newUser:  ", user); // da se iztrie
+            // console.log("controler postSignup: newUser:  ", user); // da se iztrie
 
             User.findOne({
                 email: req.body.email

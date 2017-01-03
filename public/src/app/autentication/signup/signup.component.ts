@@ -10,24 +10,29 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class SignupComponent implements OnInit {
   private isDuplicatedUserError: boolean = false;
+    confirmPassword: string = '12345';
 
   constructor(private router: Router, private authService: AuthenticationService) { }
 
   signup(event, email, password) {
+    console.log("signup email:  ", email);
+    console.log("signup password:  ", password);
     event.preventDefault();
     this.isDuplicatedUserError = false;
 
-    this.authService.register(email, password)
-    .subscribe(
-      response => {
-        localStorage.setItem('id_token', response);
-        this.router.navigate(['home']);
-    },
-    error => {
-      this.isDuplicatedUserError = true;
-      // alert(error);
-      // console.log(error);
-    }
+
+    this.authService.register(email, password, this.confirmPassword)
+      .subscribe(
+        response => {
+          localStorage.setItem('auth_token', response);
+          this.authService.logedIn = true;
+          this.router.navigate(['home']);
+      },
+      error => {
+        this.isDuplicatedUserError = true;
+        alert(error);
+        console.log(error);
+      }
     );
   }
 

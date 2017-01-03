@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
 import { AutenticationRoutes } from './autentication.routing';
+import { AuthenticationGuard } from './autentication.guard';
 import { AuthenticationService } from './service/authentication.service';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AuthenticationService } from './service/authentication.service';
     SignupComponent
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    AuthenticationGuard
   ],
   exports: [
   ]

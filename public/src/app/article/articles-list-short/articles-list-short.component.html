@@ -1,0 +1,14 @@
+<h2>Last articles</h2>
+<ul>
+  <li *ngFor="let article of ( articles | slice:articles?.length - 4 ); let i = index"
+  class="col-sm-6 col-md-3" [class.hovered]="hoveredIndex > -1">
+    <a href=""
+    (mouseenter)="hoveredIndex = i"
+    (mouseleave)="hoveredIndex = -1"
+    [class.hovered]="hoveredIndex === i">
+      <img [src]="article.imgUrl" [alt]="article.title" />
+      <h3>{{article.title}}</h3>
+      <!--<p>{{article.content | slice:0:30}}</p>-->
+    </a>
+  </li>
+</ul>

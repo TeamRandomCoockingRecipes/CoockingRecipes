@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   private pageTitle: string = 'CoockingRecipes';
-  private isUserLogged: boolean = localStorage.getItem("id_token") !== null;
+  private isUserLogged: boolean = localStorage.getItem('auth_token') !== null;
 
   constructor( ) { }
 
   onLogout() {
-    localStorage.removeItem("id_token");
+    localStorage.removeItem('auth_token');
   }
 
   ngOnInit() {
