@@ -33,6 +33,9 @@
     <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
         <a class="page-link" (click)="setPage(1)">First</a>
     </li>
+    <!--<li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>-->
     <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
         <a class="page-link" tabindex="-1" aria-label="Previous" (click)="setPage(pager.currentPage - 1)">
             <span aria-hidden="true">&laquo;</span>
