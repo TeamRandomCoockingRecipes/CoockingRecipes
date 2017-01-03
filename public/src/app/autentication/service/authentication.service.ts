@@ -14,7 +14,8 @@ export class AuthenticationService {
         'Accept': 'application/json'
     });
 
-  private baseUrl: string = 'http://localhost:3005/api/autenticate';
+  // private baseUrl: string = 'http://localhost:3005/api/autenticate';
+  private baseUrl: string = 'https://cooking-recipes-2.herokuapp.com/api/autenticate';
   logedIn: boolean = false;
 
   constructor(private http: Http, private route: Router) {
