@@ -63,20 +63,12 @@ module.exports = function() {
         },
         logout(req, res) {
             req.logout();
-            req.flash("success", {
-                msg: "Успешно отписване от системата!!!"
-            });
+            // req.flash("success", {
+            //     msg: "Успешно отписване от системата!!!"
+            // });
+
+            return req.json("success");
         },
-        // getSignup(req, res) {  // triabva da se iztrie
-        //     if (req.user) {
-        //         return res.redirect("/");
-        //     }
-        //     res.send({
-        //         title: "Create Account"
-        //     });
-        // },
-
-
         // Registation
         postSignup(req, res, next) {
             console.log("controler postSignup:  ", req.body); // da se iztrie

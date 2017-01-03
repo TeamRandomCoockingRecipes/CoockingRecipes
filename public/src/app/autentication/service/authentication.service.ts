@@ -47,18 +47,13 @@ export class AuthenticationService {
        .do(data => console.log("login : " + JSON.stringify(data)))
        .catch(this.handleError)
        .map((result: Response) => <any> JSON.stringify(result));
-      //  .map((result) => {
-      //    if (result.succsess) {
-      //      localStorage.setItem('auth_token', result)
-      //      this.logedIn = true;
-      //    }
-
-      //    return result.success;
-      //  });
   }
 
-  logout() {
-
+  logout(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/logout`)
+            .map((response: Response) => <any> response.json())
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError)
   }
 
   isLogedIn() {

@@ -29,19 +29,7 @@ export class LoginComponent implements OnInit {
         console.log(error);
       }
     );
-
-    // this.authService.login(email, password)
-    //   .subscribe((result) => {
-    //     if (result) {
-    //       this.router.navigate(['home']);
-    //     }
-    //   });
   }
-
-  // signup(event) {
-  //   event.preventDefault();
-  //   this.router.navigate(['signup']);
-  // }
 
   ngOnInit() {
   }
