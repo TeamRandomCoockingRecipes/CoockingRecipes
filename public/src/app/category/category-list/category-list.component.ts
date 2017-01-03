@@ -15,7 +15,8 @@ export class CategoryListComponent implements OnInit {
 
   private categories: ICategory[];
   private errorMessage: string;
-  
+
+  private hoveredImgStyle: string = '0 0 10px rgba(0, 0, 0, 0.8)';
   private isUserLogged: boolean = this.authService.isLogedIn();
 
   constructor(
@@ -28,5 +29,4 @@ export class CategoryListComponent implements OnInit {
         categories => this.categories = categories,
         error => this.errorMessage = <any>error);
   }
-
 }

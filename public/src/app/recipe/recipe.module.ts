@@ -15,8 +15,7 @@ import { IngredientComponent } from './ingredient/ingredient.component';
 import { ImageUrlComponent } from './image-url/image-url.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
-import { HighlightDirective } from '../directives/highlight.directive';
-import { HoverDirective } from '../directives/hover.directive';
+import { SharedModule } from '../shared/shared.module';
 import { RecipesListShortComponent } from './recipes-list-short/recipes-list-short.component';
 
 @NgModule({
@@ -24,7 +23,8 @@ import { RecipesListShortComponent } from './recipes-list-short/recipes-list-sho
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RecipeRoutes
+    RecipeRoutes,
+    SharedModule
   ],
   declarations: [
     RecipeListComponent,
@@ -34,8 +34,6 @@ import { RecipesListShortComponent } from './recipes-list-short/recipes-list-sho
     IngredientComponent,
     ImageUrlComponent,
     EditRecipeComponent,
-    HoverDirective,
-    HighlightDirective,
     RecipesListShortComponent
   ],
   exports: [

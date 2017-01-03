@@ -12,13 +12,13 @@ import { AuthenticationService } from '../../autentication/service/authenticatio
   styleUrls: ['./article-list.component.css']
 })
 export class ArticleListComponent implements OnInit {
-  articlesAll: IArticle[];
-  listFilter: string;
-  // isUserLogged: boolean = localStorage.getItem('auth_token') !== null;
-  isUserLogged: boolean = this.authService.isLogedIn();
+  private articlesAll: IArticle[];
+  private listFilter: string;
+  private hoveredImgStyle: string = '0 0 10px rgba(0, 0, 0, 0.8)';
+  private isUserLogged: boolean = this.authService.isLogedIn();
 
-  pager: any = {};
-  pagedArticles: any[];
+  private pager: any = {};
+  private pagedArticles: any[];
 
   private errorMessage: string;
 

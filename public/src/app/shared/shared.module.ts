@@ -9,6 +9,9 @@ import { FooterComponent } from './footer/footer.component';
 
 import { PagerService } from './services/paager/pager.service';
 
+import { HighlightDirective } from './directives/highlight.directive';
+import { HoverDirective } from './directives/hover.directive';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,14 +20,18 @@ import { PagerService } from './services/paager/pager.service';
   ],
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    HighlightDirective,
+    HoverDirective
   ],
   providers: [
     PagerService
   ],
   exports: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    HighlightDirective,
+    HoverDirective
   ]
 })
 export class SharedModule { }

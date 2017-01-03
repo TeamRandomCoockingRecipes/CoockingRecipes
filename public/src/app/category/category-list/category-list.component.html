@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div *ngFor="let category of categories" class="category col-lg-3 col-sm-6">
-        <div class="image-wrapper">
+        <div [appHover]="hoveredImgStyle" class="image-wrapper">
             <img src="{{ category.imgUrl }}" alt="{{category.name}}">
         </div>
         <h2>

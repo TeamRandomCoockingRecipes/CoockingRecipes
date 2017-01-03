@@ -12,7 +12,6 @@ import { EditArticleComponent } from './edit-article/edit-article.component';
 
 import { ArticleFilterPipe } from './pipes/filter/article-filter.pipe';
 import { ArticleRoutes } from './article.routing';
-// import { AppService } from './services/app/app.service';
 import { ArticleService } from './services/article.service';
 import { ArticlesListShortComponent } from '../article/articles-list-short/articles-list-short.component';
 
@@ -21,7 +20,7 @@ import { ArticlesListShortComponent } from '../article/articles-list-short/artic
     CommonModule,
     FormsModule,
     ArticleRoutes,
-    // SharedModule
+    SharedModule
   ],
   declarations: [
     ArticleListComponent,

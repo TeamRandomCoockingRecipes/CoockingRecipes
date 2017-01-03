@@ -16,7 +16,7 @@
 
 <!-- items being paged -->
 <div class="article" *ngFor="let article of pagedArticles | articleFilter: listFilter">
-    <div class="image-wrapper">
+    <div [appHover]="hoveredImgStyle" class="image-wrapper">
         <img [src]="article.imgUrl" [alt]="article.title">
     </div>
     <h2>
