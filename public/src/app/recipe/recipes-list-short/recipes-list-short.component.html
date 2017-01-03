@@ -5,6 +5,7 @@
     <a href=""
     (mouseenter)="hoveredIndex = i"
     (mouseleave)="hoveredIndex = -1"
+    [routerLink]="['/recipe', recipe._id]"
     [class.hovered]="hoveredIndex === i">
       <img [src]="recipe.imageUrls" [alt]="recipe.title" />
       <h3>{{recipe.title}}</h3>

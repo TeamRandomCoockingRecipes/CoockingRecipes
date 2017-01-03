@@ -16,7 +16,8 @@ export class ArticleService {
         'Accept': 'application/json'
     });
 
-    private articleBackendUrl = 'http://localhost:3005/api/articles';
+    // private articleBackendUrl = 'http://localhost:3005/api/articles';
+    private articleBackendUrl = 'https://cooking-recipes-2.herokuapp.com/api/articles';
     private articlesUrl = 'api/testStore/articles.json';
 
     constructor(private http: Http) { }

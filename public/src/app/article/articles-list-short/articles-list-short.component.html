@@ -2,9 +2,10 @@
 <ul>
   <li *ngFor="let article of ( articles | slice:articles?.length - 4 ); let i = index"
   class="col-sm-6 col-md-3" [class.hovered]="hoveredIndex > -1">
-    <a href=""
+    <a
     (mouseenter)="hoveredIndex = i"
     (mouseleave)="hoveredIndex = -1"
+    [routerLink]="['/article', article._id]"
     [class.hovered]="hoveredIndex === i">
       <img [src]="article.imgUrl" [alt]="article.title" />
       <h3>{{article.title}}</h3>

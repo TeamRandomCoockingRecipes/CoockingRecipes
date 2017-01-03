@@ -5,6 +5,7 @@
     <a href=""
     (mouseenter)="hoveredIndex = i"
     (mouseleave)="hoveredIndex = -1"
+    [routerLink]="['/category', category._id]"
     [class.hovered]="hoveredIndex === i">
       <img [src]="category.imgUrl" [alt]="category.name" />
       <h3>{{category.name}}</h3>

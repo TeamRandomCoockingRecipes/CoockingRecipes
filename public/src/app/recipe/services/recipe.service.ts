@@ -16,7 +16,8 @@ export class RecipeService {
         'Accept': 'application/json'
     });
 
-    private recipesBackendUrl = 'http://localhost:3005/api/recipes';
+    // private recipesBackendUrl = 'http://localhost:3005/api/recipes';
+    private recipesBackendUrl = 'https://cooking-recipes-2.herokuapp.com/api/recipes';
 
     constructor(private http: Http) { }
 
